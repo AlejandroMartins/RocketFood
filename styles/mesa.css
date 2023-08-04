@@ -1,0 +1,182 @@
+.Add-Table {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-add {
+    margin-top: 0.7%;
+    height: 10%;
+}
+
+
+
+.table-components {
+    width: calc(100% - 30%);
+    height: 90px;
+    font-size: 200%;
+    margin-top: 4%;
+    margin-right: 10%;
+    font-weight: bold;
+
+}
+
+.list-table {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    justify-content: space-between;
+    padding-left: 0rem;
+    margin-top: 40px;
+    list-style: none;
+}
+
+.list-table>ul {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+body {
+    background-color: whitesmoke;
+    height: 100%;
+}
+
+/* Estilos para as abas */
+.tab {
+    display: none;
+}
+
+.tab.active {
+    display: block;
+}
+
+/* Estilos para os links das abas */
+.tab-links {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.tab-link {
+    margin-right: 10px;
+    cursor: pointer;
+}
+.abas-modal{
+    display: flex;
+    justify-content: flex-start;
+}
+
+    /* Estilos para o modal */
+
+
+    /* .table-produtos {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin-bottom: 30%;
+}
+
+.table-produtos th,
+.table-produtos td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.table-produtos th {
+    background-color: #f2f2f2;
+} */
+
+    .table-produtos {
+        margin-bottom: 10%;
+        text-align: center;
+    }
+
+    .align-left {
+        text-align: left;
+    }
+
+    h5 {
+        margin-top: 10%;
+        margin-bottom: 5%;
+    }
+
+    h6 {
+        font-size: 115%;
+
+    }
+
+    /* Estilos para abas ativas */
+    .nav-tabs .nav-link.active {
+
+        font-weight: bold;
+
+    }
+
+    /* Estilos para abas inativas */
+    .nav-tabs .nav-link {
+        color: #000;
+        /* Cor do texto das abas inativas */
+
+    }
+
+    /* Estilos para o link das abas inativas */
+    .nav-tabs .nav-link:hover {
+        font-weight: bold;
+    }
+
+
+    .buttons-container {
+        display: flex;
+        gap: 10px;
+        /* Ajuste o espaçamento entre os botões conforme desejado */
+    }
+
+    .form-footer {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+    }
+
+    .h6-total {
+        margin-top: 2%;
+    }
+
+    .ttl-ItemVenda {
+        margin-left: 1%;
+    }
+
+
+
+
+
+
+
+
+
+    /* Redimensionamento */
+
+    @media screen and (max-width: 700px) {
+        .list-table {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            justify-content: space-between;
+            padding-left: 1.5rem;
+            margin-top: 40px;
+            list-style: none;
+
+        }
+
+        .table-produtos {
+            margin-bottom: 10%;
+            width: 70%;
+            font-size: 70%;
+            text-align: center;
+        }
+
+        .Add-Table {
+            margin-top: 10%;
+            display: flex;
+            justify-content: space-between;
+        }
+    }

@@ -1,0 +1,27 @@
+
+
+.principal {
+    display: flex;
+}
+
+.esquerda {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+}
+
+.direita {
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 33%;
+}
+
+.cabecalho{
+    display: flex;
+    justify-content: center;
+}
+

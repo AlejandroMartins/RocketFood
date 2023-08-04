@@ -1,0 +1,115 @@
+.list-cardapio {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    justify-content: space-between;
+    padding-left: 0rem;
+    margin-top: 40px;
+    list-style: none;
+}
+
+.list-cardapio ul {
+    margin: 0;
+    width: --tamanho-card;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.card {
+    margin-left: 10%;
+    margin-top: 10%;
+    width: 13rem;
+
+}
+
+.buttons {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.card-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-body {
+    background-color: white;
+    margin-top: 4%;
+}
+
+.card-title-orgnz {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.icon {
+    width: 25%;
+    font-size: 20px;
+    margin: 2%;
+}
+
+.head {
+    display: flex;
+    justify-content: space-between;
+}
+
+body {
+    background-color: whitesmoke;
+    height: 100%;
+}
+
+@media screen and (max-width: 700px) {
+    h1 {
+        font-size: 150%;
+        margin: 0;
+        line-height: 1.5;
+
+    }
+
+    .filtro {
+        font-size: 90%;
+    }
+
+    .card {
+      
+        width: 8rem;
+    }
+
+    .list-cardapio {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        justify-content: center;
+        margin-top: 30px;
+        list-style: none;
+        column-count: 2;
+    }
+
+    .card-title {
+        margin-top: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 90%;
+    }
+
+    .icon {
+        width: auto;
+        font-size: 15px;
+        margin: 2%;
+    }
+
+    .card-body {
+        background-color: white;
+        margin-top: 0;
+    }
+
+    .head {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10%;
+    }
+}
