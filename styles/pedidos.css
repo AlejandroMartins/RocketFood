@@ -1,0 +1,15 @@
+.Add-Table {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-add {
+    margin-top: 0.7%;
+    height: 10%;
+}
+
+.card-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
