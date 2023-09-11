@@ -39,7 +39,9 @@ create table Mesa(
  aberta boolean,
  valorTotal decimal(10,2),
  id_mesa integer,
- FOREIGN KEY (id_mesa) REFERENCES Mesa(id)
+ id_funcionario integer,
+ FOREIGN KEY (id_mesa) REFERENCES Mesa(id),
+ FOREIGN KEY (id_funcionario) REFERENCES Funcionario(id)
  
  );
  
@@ -116,6 +118,30 @@ INSERT INTO Funcionario (nome, telefone, nivel_acesso, usuario, senha) VALUES ('
 INSERT INTO Funcionario (nome, telefone, nivel_acesso, usuario, senha) VALUES ('Juliana Pereira', '(11) 98765-7654', 'Atendente', 'juliana', 'senha654');
 INSERT INTO Funcionario (nome, telefone, nivel_acesso, usuario, senha) VALUES ('Roberto Costa', '(11) 99876-4321', 'Atendente', 'roberto', 'abc789');
 
+-- Inserir uma venda com itens de venda
+INSERT INTO Venda (data, horaChegada, horaSaida, aberta, valorTotal, id_mesa, id_funcionario)
+VALUES ('2023-09-04', '12:00:00', '13:30:00', false, 35.00, 1, 1);
+
+-- Inserir itens de venda para a venda acima
+INSERT INTO ItemVenda (id_produto, id_venda, quantidade, dataPedido, preco, valorTotal)
+VALUES (1, 1, 2, NOW(), 5.00, 10.00);
+
+INSERT INTO ItemVenda (id_produto, id_venda, quantidade, dataPedido, preco, valorTotal)
+VALUES (4, 1, 1, NOW(), 6.00, 6.00);
+
+-- Inserir outra venda na mesa 2 com itens de venda
+INSERT INTO Venda (data, horaChegada, horaSaida, aberta, valorTotal, id_mesa, id_funcionario)
+VALUES ('2023-09-04', '13:00:00', '14:30:00', false, 42.50, 2, 2);
+
+-- Inserir itens de venda para a venda acima
+INSERT INTO ItemVenda (id_produto, id_venda, quantidade, dataPedido, preco, valorTotal)
+VALUES (3, 2, 1, NOW(), 7.50, 22.50);
+
+INSERT INTO ItemVenda (id_produto, id_venda, quantidade, dataPedido, preco, valorTotal)
+VALUES (2, 2, 2, NOW(), 2.50, 5.00);
+
+
+
 DELIMITER $$
 
 CREATE PROCEDURE `inserir_itemvenda`(IN produto_id INT, IN venda_id INT, IN quantidade INT)
@@ -164,6 +190,49 @@ END
 $$
 DELIMITER ;
 
+CREATE VIEW ViewVendasPorMesa AS
+SELECT m.numero AS NumeroMesa, v.valorTotal AS ValorTotal
+FROM Mesa m
+INNER JOIN Venda v ON m.id = v.id_mesa;
 
-use rocketfood;
-select * from produto;
+CREATE VIEW ViewVendasPorFuncionario AS
+SELECT f.nome AS NomeFuncionario, v.data AS DataVenda, v.valorTotal AS ValorTotal
+FROM Funcionario f
+INNER JOIN Venda v ON f.id = v.id_funcionario;
+
+CREATE VIEW ViewVendasPorGrupoProduto AS
+SELECT gp.nome AS NomeGrupo, SUM(iv.valorTotal) AS ValorTotalVendas
+FROM GrupoProduto gp
+JOIN Produto p ON gp.id = p.id_grupo
+JOIN ItemVenda iv ON p.id = iv.id_produto
+JOIN Venda v ON iv.id_venda = v.id
+GROUP BY gp.nome;
+
+CREATE VIEW ViewResumoVendasDiarias AS
+SELECT DATE(data) AS Data, COUNT(id) AS NumeroDeVendas, SUM(valorTotal) AS ReceitaTotal,
+       AVG(valorTotal) AS MediaDeVendasPorDia
+FROM Venda
+GROUP BY DATE(data);
+
+CREATE VIEW ViewProdutosVendidosNoDia AS
+SELECT v.data AS Data,
+       m.numero AS Mesa,
+       iv.dataPedido AS Horario,
+       p.nome AS Produto,
+       iv.quantidade
+FROM Venda v
+JOIN ItemVenda iv ON v.id = iv.id_venda
+JOIN Produto p ON iv.id_produto = p.id
+JOIN Mesa m ON v.id_mesa = m.id
+WHERE DATE(v.data) = CURDATE();
+
+
+select * from ViewVendasPorMesa;
+
+select * from ViewVendasPorFuncionario;
+
+select * from ViewVendasPorGrupoProduto;
+
+select * from ViewResumoVendasDiarias;
+
+select * from ViewProdutosVendidosNoDia;

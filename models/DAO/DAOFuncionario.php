@@ -53,7 +53,7 @@ class DaoFuncionario
         
     }
 
-    public function update(funcionario $funcionario)
+    public function update(funcionario $funcionario, $id)
     {
         $sql = 'update funcionario set nome = ?,telefone = ?,usuario = ?, senha = ?, nivel_acesso = ? where id = ?;';
         $pst = Connection::getPreparedStatement($sql);
@@ -61,7 +61,8 @@ class DaoFuncionario
         $pst->bindValue(2, $funcionario->getTelefone());
         $pst->bindValue(3, $funcionario->getUsuario());
         $pst->bindValue(4, $funcionario->getSenha());
-        $pst->bindValue(5, $funcionario->getId());
+        $pst->bindValue(5, $funcionario->getNivel_acesso());
+        $pst->bindValue(6, $id);
         if ($pst->execute()) {
             return true;
         } else {
