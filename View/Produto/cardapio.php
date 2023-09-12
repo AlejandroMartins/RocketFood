@@ -153,6 +153,7 @@
                                                 <input type="text" class="form-control" name="descricao" id="descricao" value="<?= $registro['descricao'] ?>">
                                             </div>
                                             <input type="hidden" name="id" id="id" value=" <?= $registro['id'] ?> ">
+                                            <input type="text" class="form-control" name="nome_imagem" id="nome_imagem" value="<?= $registro['nome_imagem'] ?>">
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>

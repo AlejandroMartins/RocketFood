@@ -12,9 +12,9 @@ $id = $_POST['id'];
 $nome = $_POST['nome'];
 $valor = $_POST['valor'];
 $descricao = $_POST['descricao'];
+$nome_img = $_POST['nome_imagem'];
 
-
-$Produto = new Produto( $valor, $nome,$descricao, $id );
+$Produto = new Produto( $valor, $nome,$nome_img,$descricao, $id );
 
 if ($daoProduto->update($Produto)) {
     echo 'Updaitando';
