@@ -31,6 +31,20 @@ class DaoVenda
       
         return $list;
     }
+    public function cancelVenda($id)
+    {
+        $sql = 'delete from venda where id = ?';
+        $pst = Connection::getPreparedStatement($sql);
+        $pst->bindValue(1, $id);
+        if ($pst->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+        
+        
+    }
+
 
 
     public function open(Venda $venda)

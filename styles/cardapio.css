@@ -2,10 +2,9 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
     justify-content: space-between;
-    padding-left: 0rem;
-    margin-top: 40px;
+    padding: 0% 5% 5% 3%;
     list-style: none;
-    padding: 0 3%;
+
 }
 
 .list-cardapio ul {
@@ -14,10 +13,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-inline-start: 0;
 
 }
 
-.head-filtro{
+ul {
+    padding-left: 0rem;
+}
+
+.head-filtro {
     display: flex;
     justify-content: end;
     align-items: center;
@@ -29,6 +33,7 @@
     width: 13rem;
 
 }
+
 .btn-add {
     margin-left: 10%;
     height: 70%;
@@ -43,11 +48,15 @@
 .card-title {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    text-align: center;
 }
 
 .card-body {
     background-color: white;
     margin-top: 4%;
+    display: flex;
+    flex-direction: column;
 }
 
 .card-title-orgnz {
@@ -71,7 +80,14 @@
 body {
     background-color: whitesmoke;
     height: 100%;
+
 }
+.card-img, .card-img-bottom, .card-img-top {
+    height: 140px;
+}
+
+
+
 
 @media screen and (max-width: 700px) {
     h1 {
@@ -86,17 +102,17 @@ body {
     }
 
     .card {
-      
+
         width: 8rem;
     }
 
     .list-cardapio {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        justify-content: center;
-        margin-top: 30px;
+        justify-content: space-between;
+        padding: 0% 5% 5% 0%;
         list-style: none;
-        column-count: 2;
+
     }
 
     .card-title {
@@ -105,6 +121,7 @@ body {
         justify-content: space-between;
         align-items: center;
         font-size: 90%;
+        text-align: center;
     }
 
     .icon {
@@ -122,5 +139,8 @@ body {
         display: flex;
         justify-content: space-between;
         margin-top: 10%;
+    }
+    .card-img, .card-img-bottom, .card-img-top {
+        height: 90px;
     }
 }

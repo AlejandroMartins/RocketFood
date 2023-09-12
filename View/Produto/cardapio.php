@@ -54,10 +54,10 @@
 
 
         </div>
-
+        <hr>
     </div>
 
-    <hr>
+    
 
     <ul class="list-cardapio">
 
@@ -77,7 +77,7 @@
         ?>
 
             <div class="card produto">
-                <img src="../../Img/ft-teste.jpg" class="card-img-top">
+                <img src="../../Img/Produtos/<?=$registro['nome']?>.png" class="card-img-top" onerror="this.src='../../Img/Produtos/ft-teste.jpg'">
                 <div class="card-body">
 
                     <div class="card-title-orgnz">

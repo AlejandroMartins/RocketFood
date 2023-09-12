@@ -40,9 +40,8 @@ create table Mesa(
  valorTotal decimal(10,2),
  id_mesa integer,
  id_funcionario integer,
- FOREIGN KEY (id_mesa) REFERENCES Mesa(id),
- FOREIGN KEY (id_funcionario) REFERENCES Funcionario(id)
- 
+ FOREIGN KEY (id_mesa) REFERENCES Mesa(id) on delete cascade,
+ FOREIGN KEY (id_funcionario) REFERENCES Funcionario(id) on delete cascade
  );
  
 create table ItemVenda(
@@ -54,8 +53,8 @@ create table ItemVenda(
  situacao bool,
  dataPedido datetime,
  valorTotal decimal(10,2),
- FOREIGN KEY (id_produto) REFERENCES Produto(id),
-  FOREIGN KEY (id_venda) REFERENCES Venda(id)
+ FOREIGN KEY (id_produto) REFERENCES Produto(id) on delete cascade,
+  FOREIGN KEY (id_venda) REFERENCES Venda(id) on delete cascade
  );
  
 -- Inserts para tabela Mesa

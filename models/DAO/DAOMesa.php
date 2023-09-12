@@ -48,7 +48,7 @@ class DAOMesa
     {
         $sql = 'insert into mesa (aberta,numero) values (?,?);';
         $pst = Connection::getPreparedStatement($sql);
-        $pst->bindValue(1, $mesa->getaberta(), PDO::PARAM_BOOL);
+        $pst->bindValue(1, true);
         $pst->bindValue(2, $mesa->getNumero());
 
         if ($pst->execute()) {

@@ -6,7 +6,7 @@
     <div class="principal">
         <div class="Add-Table">
             <h1>Vendas</h1>
-           
+
         </div>
 
         <hr>
@@ -23,7 +23,7 @@
 
             $daovenda = new Daovenda();
             $lista = $daovenda->listAll();
-           
+
             ?>
 
 
@@ -36,7 +36,7 @@
                         Mesa
                     </th>
                     <th>
-                       Data
+                        Data
                     </th>
                     <th>
                         Chegada
@@ -45,10 +45,10 @@
                         Saida
                     </th>
                     <th>
-                       Valor
+                        Valor
                     </th>
                     <th>
-                       Ações
+                        Ações
                     </th>
                 </tr>
                 <?php
@@ -60,7 +60,8 @@
                             <?= $registro['id'] ?>
                         </td>
                         <td>
-                        Mesa <?= implode($arraymesa) ?>
+                            Mesa
+                            <?= implode($arraymesa) ?>
                         </td>
                         <td>
                             <?= $registro['data'] ?>
@@ -69,10 +70,24 @@
                             <?= $registro['horaChegada'] ?>
                         </td>
                         <td>
-                            <?= $registro['horaSaida'] ?>
+                            <?php
+                            if ($registro['horaSaida'] == null) {
+                                echo 'Ainda ocupada';
+                            }
+                            if ($registro['horaSaida'] != null) {
+                                echo $registro['horaSaida'];
+                            }
+                            ?>
                         </td>
                         <td>
-                            <?= $registro['valorTotal'] ?>
+                            <?php
+                            if ($registro['valorTotal'] == null) {
+                                echo 'Não Fechou';
+                            }
+                            if ($registro['valorTotal'] != null) {
+                                echo $registro['valorTotal'];
+                            }
+                            ?>
                         </td>
 
                         <td>
@@ -86,42 +101,41 @@
                     </tr>
                     <!-- Modal Delete-->
                     <div class="modal fade" id="delete-venda<?= $registro['id'] ?>" tabindex="-1"
-                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-body">
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <form action="deletevenda.php" method="post">
+                                        <p>Vc tem certeza que quer excluir o venda:
+                                            <?= $registro['nome'] ?> ??
+                                        </p>
+                                        <div class="modal-footer" style="justify-content: center;">
+                                            <button type="button" class="btn btn-danger"
+                                                data-bs-dismiss="modal">Não</button>
                                             <form action="deletevenda.php" method="post">
-                                                <p>Vc tem certeza que quer excluir o venda:
-                                                    <?= $registro['nome'] ?> ??
-                                                </p>
-                                                <div class="modal-footer" style="justify-content: center;">
-                                                    <button type="button" class="btn btn-danger"
-                                                        data-bs-dismiss="modal">Não</button>
-                                                    <form action="deletevenda.php" method="post">
 
-                                                        <input type="hidden" name="id" id="id"
-                                                            value=" <?= $registro['id'] ?> ">
-                                                        <button class="btn btn-success" data-bs-dismiss="modal">Sim</button>
-
-                                                    </form>
-                                                </div>
+                                                <input type="hidden" name="id" id="id" value=" <?= $registro['id'] ?> ">
+                                                <button class="btn btn-success" data-bs-dismiss="modal">Sim</button>
 
                                             </form>
                                         </div>
 
-                                        </form>
-                                    </div>
+                                    </form>
                                 </div>
-                            </div>
 
-                            
-                            
-                            
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
                     <?php
                 }
                 ?>
             </table>
-        </ul>     
+        </ul>
     </div>
 </div>
 </div>
