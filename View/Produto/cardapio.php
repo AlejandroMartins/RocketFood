@@ -77,7 +77,7 @@
         ?>
 
             <div class="card produto">
-                <img src="../../Img/Produtos/<?=$registro['nome']?>.png" class="card-img-top" onerror="this.src='../../Img/Produtos/ft-teste.jpg'">
+                <img src="../../Img/Produtos/<?=$registro['nome_imagem']?>.png" class="card-img-top" onerror="this.src='../../Img/Produtos/ft-teste.jpg'">
                 <div class="card-body">
 
                     <div class="card-title-orgnz">
@@ -234,6 +234,7 @@
                             <input type="text" class="form-control" name="descricao" id="descricao">
                         </div>
                         <input type="file" class="form-control" name="file" id="file" accept="">
+                        
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>

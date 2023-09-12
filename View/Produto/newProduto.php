@@ -24,11 +24,11 @@
     $nome = $_POST['nome'];
     $valor = $_POST['valor'];
     $descricao = $_POST['descricao'];
-   
+    $nome_imagem = $_POST['nome'];
     move_uploaded_file($_FILES['file']['tmp_name'], "../../Img/Produtos/$nome.png");
     
-
-    $Produto = new Produto($valor, $nome, $descricao);
+    var_dump($nome_imagem);
+    $Produto = new Produto($valor, $nome,$nome_imagem, $descricao);
     $daoProduto = new DaoProduto();
 
     if ($daoProduto->create($Produto)) {

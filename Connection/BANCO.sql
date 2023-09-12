@@ -19,6 +19,7 @@ create table Mesa(
  valor decimal(10,2) not null,
  descricao varchar(200),
  id_grupo integer,
+ nome_imagem varchar(50),
  foreign key (id_grupo) references GrupoProduto(id) 
  );
  
@@ -235,3 +236,5 @@ select * from ViewVendasPorGrupoProduto;
 select * from ViewResumoVendasDiarias;
 
 select * from ViewProdutosVendidosNoDia;
+
+select * from produto;

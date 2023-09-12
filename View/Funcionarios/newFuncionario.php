@@ -34,7 +34,7 @@
 
     if ($daoFuncionario->create($Funcionario)) {
         echo 'O funcionario foi salvo';
-        header("location: mesa.php");
+        header("location: funcionario.php");
     } else {
         echo 'Not save.';
     }

@@ -83,15 +83,15 @@ require_once "..\sidebar.php"; ?>
                                 if ($situacao == 0) {
                                     ?>
 
-                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                    <ul class="nav nav-tabs" id="myTab<?= $registro['id'] ?>" role="tablist">
                                         <li class="nav-item" role="presentation">
                                             <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
-                                                data-bs-target="#home-tab-pane" type="button" role="tab"
+                                                data-bs-target="#home-tab-pane<?= $registro['id'] ?>" type="button" role="tab"
                                                 aria-controls="home-tab-pane" aria-selected="true">Comanda</button>
                                         </li>
                                         <li class="nav-item" role="presentation">
                                             <button class="nav-link" id="profile-tab" data-bs-toggle="tab"
-                                                data-bs-target="#profile-tab-pane" type="button" role="tab"
+                                                data-bs-target="#profile-tab-pane<?= $registro['id'] ?>" type="button" role="tab"
                                                 aria-controls="profile-tab-pane" aria-selected="false">Adicionar
                                                 Produto</button>
                                         </li>
@@ -99,7 +99,7 @@ require_once "..\sidebar.php"; ?>
 
 
                                     <div class="tab-content" id="myTabContent">
-                                        <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
+                                        <div class="tab-pane fade show active" id="home-tab-pane<?= $registro['id'] ?>" role="tabpanel"
                                             aria-labelledby="home-tab" tabindex="0">
                                             <h5>Produtos Consumidos</h5>
                                             <table class="table table-produtos">
@@ -160,7 +160,7 @@ require_once "..\sidebar.php"; ?>
                                             </table>
                                         </div>
 
-                                        <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel"
+                                        <div class="tab-pane fade" id="profile-tab-pane<?= $registro['id'] ?>" role="tabpanel"
                                             aria-labelledby="profile-tab" tabindex="0">
                                             <!-- Conteúdo da aba Adicionar Produtos -->
                                             <form action="newItemVenda.php" method="post">
@@ -295,8 +295,10 @@ require_once "..\sidebar.php"; ?>
                 </div>
             </div>
         </div>
-
-        <input type="hidden" class="fortest" value="<?= $_SESSION['vendaaberta'] ?>">
+        <form>
+        <input type="hidden" id = "fortest" value="<?=$_SESSION['mesaaberta']?>">
+        </form>
+      
     </div>
     <script>
         window.addEventListener('load', () => {

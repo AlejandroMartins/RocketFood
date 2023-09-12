@@ -50,11 +50,13 @@ class DaoProduto
 
     public function create(produto $produto)
     {
-        $sql = 'insert into produto (nome,valor,descricao) values (?,?,?);';
+        $sql = 'insert into produto (nome,valor,descricao,nome_imagem,id_grupo) values (?,?,?,?,?);';
         $pst = Connection::getPreparedStatement($sql);
         $pst->bindValue(1, $produto->getnome());
         $pst->bindValue(2, $produto->getvalor());
         $pst->bindValue(3, $produto->getdescricao());
+         $pst->bindValue(4, $produto->getNome_Imagem());
+         $pst->bindValue(5, $produto->getId_Grupo());
         if ($pst->execute()) {
             return true;
         } else {
@@ -95,7 +97,3 @@ class DaoProduto
 
 
 }
-
-
-
-?>
