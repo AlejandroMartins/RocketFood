@@ -1,3 +1,5 @@
+
+
 <?php
 session_start();
 require_once "..\sidebar.php"; ?>
@@ -85,22 +87,24 @@ require_once "..\sidebar.php"; ?>
 
                                     <ul class="nav nav-tabs" id="myTab<?= $registro['id'] ?>" role="tablist">
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
-                                                data-bs-target="#home-tab-pane<?= $registro['id'] ?>" type="button" role="tab"
-                                                aria-controls="home-tab-pane" aria-selected="true">Comanda</button>
+                                            <button class="nav-link active" id="home-tab<?= $registro['id'] ?>"
+                                                data-bs-toggle="tab" data-bs-target="#home-tab-pane<?= $registro['id'] ?>"
+                                                type="button" role="tab" aria-controls="home-tab-pane"
+                                                aria-selected="true">Comanda</button>
                                         </li>
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab"
-                                                data-bs-target="#profile-tab-pane<?= $registro['id'] ?>" type="button" role="tab"
-                                                aria-controls="profile-tab-pane" aria-selected="false">Adicionar
+                                            <button class="nav-link" id="profile-tab<?= $registro['id'] ?>" data-bs-toggle="tab"
+                                                data-bs-target="#profile-tab-pane<?= $registro['id'] ?>" type="button"
+                                                role="tab" aria-controls="profile-tab-pane" aria-selected="false">Adicionar
                                                 Produto</button>
                                         </li>
                                     </ul>
 
 
-                                    <div class="tab-content" id="myTabContent">
-                                        <div class="tab-pane fade show active" id="home-tab-pane<?= $registro['id'] ?>" role="tabpanel"
-                                            aria-labelledby="home-tab" tabindex="0">
+                                    <div class="tab-content" id="myTabContent<?= $registro['id'] ?>">
+                                        <!-- Aba Comanda -->
+                                        <div class="tab-pane fade show active" id="home-tab-pane<?= $registro['id'] ?>"
+                                            role="tabpanel" aria-labelledby="home-tab" tabindex="0">
                                             <h5>Produtos Consumidos</h5>
                                             <table class="table table-produtos">
 
@@ -110,7 +114,7 @@ require_once "..\sidebar.php"; ?>
                                                         <th>Quantidade</th>
                                                         <th>Preço</th>
                                                         <th>Total</th>
-                                                        <th colspan="3">Ações</th>
+                                                        <th colspan="1">Ações</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -123,27 +127,27 @@ require_once "..\sidebar.php"; ?>
                                                     $lista = $daoItemVenda->listForVenda($vendaAberta);
                                                     $total = 0;
 
-                                                    foreach ($lista as $registro) {
-                                                        $total = $total + $registro['valortotal'];
-                                                        $arrayproduto = $daoItemVenda->getProduto($registro['id_Produto']);
+                                                    foreach ($lista as $itens) {
+                                                        $total = $total + $itens['valortotal'];
+                                                        $arrayproduto = $daoItemVenda->getProduto($itens['id_Produto']);
                                                         ?>
                                                         <tr>
                                                             <td class="align-left">
                                                                 <?= implode($arrayproduto) ?>
                                                             </td>
                                                             <td>
-                                                                <?= $registro['quantidade'] ?>
+                                                                <?= $itens['quantidade'] ?>
                                                             </td>
                                                             <td>
-                                                                <?= $registro['preco'] ?>
+                                                                <?= $itens['preco'] ?>
                                                             </td>
                                                             <td>
-                                                                <?= $registro['valortotal'] ?>
+                                                                <?= $itens['valortotal'] ?>
                                                             </td>
                                                             <td>
                                                                 <form action="deleteItemVenda.php" method="post">
                                                                     <input type="hidden" name="id" id="id"
-                                                                        value=" <?= $registro['id'] ?> ">
+                                                                        value=" <?= $itens['id'] ?> ">
                                                                     <button class="btn btn-danger btn-sm">
                                                                         <i class='bx bxs-trash'></i>
                                                                     </button>
@@ -159,10 +163,9 @@ require_once "..\sidebar.php"; ?>
                                                 </tbody>
                                             </table>
                                         </div>
-
-                                        <div class="tab-pane fade" id="profile-tab-pane<?= $registro['id'] ?>" role="tabpanel"
-                                            aria-labelledby="profile-tab" tabindex="0">
-                                            <!-- Conteúdo da aba Adicionar Produtos -->
+                                        <!-- Aba Adicionar Produtos -->
+                                        <div class="tab-pane fade show" id="profile-tab-pane<?= $registro['id'] ?>"
+                                            role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
                                             <form action="newItemVenda.php" method="post">
                                                 <br>
                                                 <input type="hidden" name="id_venda" id="id_venda" value="<?= $vendaAberta ?>">
@@ -201,16 +204,13 @@ require_once "..\sidebar.php"; ?>
                                                                 id="btn-plus"><strong>+</strong></button>
                                                         </div>
                                                     </div>
-
-
-
-
                                                     <button type="submit" class="btn btn-success">Adicionar</button>
-
                                                 </div>
 
                                             </form>
                                         </div>
+
+
                                     </div>
                                     <?php
 
@@ -295,10 +295,10 @@ require_once "..\sidebar.php"; ?>
                 </div>
             </div>
         </div>
-        <form>
-        <input type="hidden" id = "fortest" value="<?=$_SESSION['mesaaberta']?>">
-        </form>
-      
+        <!-- <form>
+            <input type="hidden" id="fortest" value="<?= $_SESSION['mesaaberta'] ?>">
+        </form> -->
+
     </div>
     <script>
         window.addEventListener('load', () => {
@@ -317,6 +317,7 @@ require_once "..\sidebar.php"; ?>
                 if (value > 1) {
                     input.value = value - 1;
                 }
+                
             });
 
             btnPlus.addEventListener('click', () => {

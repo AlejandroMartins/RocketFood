@@ -20,7 +20,7 @@
     $venda = SIDEBASE . '/View/Venda/vendas.php';
     $login = SIDEBASE . '/View/auth/index.php'
 
-    ?>
+        ?>
 
     <link rel="stylesheet" href="<?= $style ?>">
 
@@ -172,6 +172,12 @@
         })
 
 
+
+       
+
+        toggle.addEventListener('click', () => {
+            sidebar.classList.toggle('close');
+        });
 
         // modeSwitch.addEventListener("click", () => {
         //     body.classList.toggle("dark");

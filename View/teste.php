@@ -52,3 +52,17 @@
 </body>
 
 </html>
+<?php
+// Função paFra verificar se o agente do usuário corresponde a um dispositivo móvel
+function isMobile()
+{
+    return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER['HTTP_USER_AGENT']);
+}
+// Verifica se a tela é um dispositivo móvel
+if (isMobile()) {
+    require_once "..\menu-mobile.php";
+} else {
+    require_once "..\sidebar.php";
+}
+session_start();
+?>
