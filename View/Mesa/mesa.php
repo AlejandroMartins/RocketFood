@@ -115,7 +115,7 @@ require_once "../sidebar.php"; ?>
                                                             <th>Quantidade</th>
                                                             <th>Preço</th>
                                                             <th>Total</th>
-                                                            <th colspan="1">Ações</th>
+                                                            <th colspan="2">Ações</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -145,7 +145,7 @@ require_once "../sidebar.php"; ?>
                                                                 <td>
                                                                     <?= $itens['valortotal'] ?>
                                                                 </td>
-                                                                <td>
+                                                                <td class="table-acoes">
                                                                     <form action="deleteItemVenda.php" method="post">
                                                                         <input type="hidden" name="id" id="id"
                                                                             value=" <?= $itens['id'] ?> ">
@@ -154,8 +154,13 @@ require_once "../sidebar.php"; ?>
                                                                         </button>
                                                                     </form>
 
+                                                                    <button class="btn btn-primary btn-sm" id="imprimir">
+                                                                        <i class='bx bxs-file'></i>
+                                                                    </button>
+
 
                                                                 </td>
+
                                                             </tr>
                                                             <?php
                                                         }
@@ -301,7 +306,10 @@ require_once "../sidebar.php"; ?>
                 </div>
             </div>
         </div>
-       
+        <div class="comandinha">
+            <!-- Conteúdo da comandinha aqui -->
+            <label for="t">Teste</label>
+        </div>
 
     </div>
     <script>
@@ -329,5 +337,34 @@ require_once "../sidebar.php"; ?>
                 input.value = value + 1;
             });
         });
+
+
+
     </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.0.0-alpha.12/html2canvas.min.js"></script>
+    <script>
+        document.getElementById("imprimir").addEventListener("click", function () {
+            // Captura a área que deseja imprimir como uma imagem
+            html2canvas(document.querySelector(".comandinha")).then(function (canvas) {
+                var imgData = canvas.toDataURL("image/png");
+
+                // Cria uma nova janela para exibir a imagem
+                var printWin = window.open("", "_blank");
+                printWin.document.open();
+                printWin.document.write('<html><head><title>Comandinha</title></head><body>');
+                printWin.document.write('<img src="' + imgData + '">');
+                printWin.document.write('</body></html>');
+                printWin.document.close();
+
+                // Aciona o comando de impressão na nova janela
+                printWin.print();
+                printWin.close();
+            });
+        });
+    </script>
+
+
+
+
 </div>
