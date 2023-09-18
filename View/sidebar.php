@@ -150,6 +150,8 @@
 
     </nav>
 
+
+
     <script>
 
         const body = document.querySelector('body'),
@@ -171,13 +173,10 @@
             sidebar.classList.toggle("close");
         })
 
-
-
-       
-
         toggle.addEventListener('click', () => {
             sidebar.classList.toggle('close');
         });
+
 
         // modeSwitch.addEventListener("click", () => {
         //     body.classList.toggle("dark");
@@ -190,9 +189,39 @@
         //     }
         // });
 
+        document.addEventListener('DOMContentLoaded', function () {
+            const sidebar = document.querySelector('.sidebar');
+
+            const homeButton = document.querySelector('#menuButton');
+
+
+            homeButton.addEventListener('click', () => {
+                sidebar.classList.toggle('open');
+            });
+        });
     </script>
 
+    <!-- Menu no footer -->
+    <nav class="navbar-expand navbar-light footer-menu">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#" id="menuButton">
+                    <i class="bx bx-menu"></i>
+                </a>
+            </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="<?= $mesa ?>">
+                    <i class="bx bx-table"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= $home ?>">
+                    <i class="bx bx-home-alt"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
 </body>
 
 </html>

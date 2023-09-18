@@ -1,4 +1,4 @@
-<?php require_once "..\sidebar.php"; ?>
+<?php require_once "..\menu.php"; ?>
 <link rel="stylesheet" href="..\..\styles\pedidos.css">
 <link rel="stylesheet" type="text/css" href="auth/css/util.css">
 

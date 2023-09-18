@@ -43,6 +43,16 @@ class DAOMesa
         $obj = $list["id"];
         return $obj;
     }
+    public function getCloseVenda($id)
+    {
+        $pst = Connection::getPreparedStatement('select * from venda where id_mesa = ? and aberta = false;');
+        $pst->bindValue(1, $id);
+
+        $pst->execute();
+        $list = $pst->fetch(PDO::FETCH_ASSOC);
+        $obj = $list["id"];
+        return $obj;
+    }
 
     public function create(mesa $mesa)
     {

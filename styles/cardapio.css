@@ -1,6 +1,6 @@
 .list-cardapio {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
     justify-content: space-between;
     padding: 0% 5% 5% 3%;
     list-style: none;
@@ -76,13 +76,19 @@ ul {
     display: flex;
     justify-content: space-between;
 }
+.filtro{
+    margin-right: 0;
+}
 
 body {
     background-color: whitesmoke;
     height: 100%;
 
 }
-.card-img, .card-img-bottom, .card-img-top {
+
+.card-img,
+.card-img-bottom,
+.card-img-top {
     height: 140px;
 }
 
@@ -102,17 +108,26 @@ body {
     }
 
     .card {
+        font-size: 70%;
+        width: 6rem;
+        height: 9rem;
 
-        width: 8rem;
     }
 
     .list-cardapio {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
         justify-content: space-between;
         padding: 0% 5% 5% 0%;
         list-style: none;
+        margin-right: -25px;
+        margin-left: -10px;
+    }
 
+    .list-cardapio li {
+        display: flex;
+        align-items: center;
+        margin-right: 10px;
     }
 
     .card-title {
@@ -126,7 +141,7 @@ body {
 
     .icon {
         width: auto;
-        font-size: 15px;
+        font-size: 9px;
         margin: 2%;
     }
 
@@ -140,7 +155,54 @@ body {
         justify-content: space-between;
         margin-top: 10%;
     }
-    .card-img, .card-img-bottom, .card-img-top {
+
+    .card-img,
+    .card-img-bottom,
+    .card-img-top {
         height: 90px;
     }
+
+
+
+    .card-body {
+        background-color: white;
+        padding: 15% 15% 0% 0%;
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .card-title-orgnz {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 45px;
+        width: 120%;
+    }
+
+    .buttons {
+        margin-top: auto;
+        display: flex;
+        justify-content: space-around;
+        padding-left: 17%;
+    }
+
+    .btn {
+        padding: 8%;
+        height: 80%;
+    }
+    .form-select{
+        width: 80%;
+        font-size: 80%;
+    }
+    .btn-add {
+        margin-left: 10%;
+        font-size: 90%;
+        height: 80%;
+        padding: 4% 5% 5% 5%;
+        margin-left: -20px;
+    }
+    
+
 }

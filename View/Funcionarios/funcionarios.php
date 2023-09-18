@@ -6,7 +6,8 @@
     <div class="principal">
         <div class="Add-Table">
             <h1>Funcionários</h1>
-            <button type="button" class="btn btn-success btn-add" data-bs-toggle="modal" data-bs-target="#create-funcionario"><i class='bx bx-plus-medical'></i></button>
+            <button type="button" class="btn btn-success btn-add" data-bs-toggle="modal"
+                data-bs-target="#create-funcionario"><i class='bx bx-plus-medical'></i></button>
         </div>
 
         <hr>
@@ -45,7 +46,7 @@
                 </tr>
                 <?php
                 foreach ($lista as $registro) {
-                ?>
+                    ?>
                     <tr>
                         <td>
                             <?= $registro['nome'] ?>
@@ -59,18 +60,25 @@
 
                         <td>
 
-                            <button class="btn btn-success icon btn-sm" data-bs-toggle="modal" data-bs-target="#info-Funcionario<?= $registro['id'] ?>"><i class='bx bx-info-circle'></i></button>
+                            <button class="btn btn-success icon btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#info-Funcionario<?= $registro['id'] ?>"><i
+                                    class='bx bx-info-circle'></i></button>
 
-                            <button class="btn btn-primary icon btn-sm" data-bs-toggle="modal" data-bs-target="#editar-Funcionario<?= $registro['id'] ?>"><i class='bx bxs-edit'></i></button>
+                            <button class="btn btn-primary icon btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#editar-Funcionario<?= $registro['id'] ?>"><i
+                                    class='bx bxs-edit'></i></button>
 
 
 
-                            <button class="btn btn-danger icon btn-sm" data-bs-toggle="modal" data-bs-target="#delete-Funcionario<?= $registro['id'] ?>"><i class='bx bxs-trash'></i></i></button>
+                            <button class="btn btn-danger icon btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#delete-Funcionario<?= $registro['id'] ?>"><i
+                                    class='bx bxs-trash'></i></i></button>
 
                         </td>
                     </tr>
                     <!-- Modal Delete-->
-                    <div class="modal fade" id="delete-Funcionario<?= $registro['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="delete-Funcionario<?= $registro['id'] ?>" tabindex="-1"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-body">
@@ -79,7 +87,8 @@
                                             <?= $registro['nome'] ?> ??
                                         </p>
                                         <div class="modal-footer" style="justify-content: center;">
-                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Não</button>
+                                            <button type="button" class="btn btn-danger"
+                                                data-bs-dismiss="modal">Não</button>
                                             <form action="deleteFuncionario.php" method="post">
 
                                                 <input type="hidden" name="id" id="id" value=" <?= $registro['id'] ?> ">
@@ -97,23 +106,27 @@
                     </div>
 
                     <!-- Modal Update-->
-                    <div class="modal fade" id="editar-Funcionario<?= $registro['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="editar-Funcionario<?= $registro['id'] ?>" tabindex="-1"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="exampleModalLabel">Atualizar Funcionario</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <form class="row g-3" action="updateFuncionario.php" method="post">
 
                                         <div class="col-md-12">
                                             <label class="form-label">Nome</label>
-                                            <input type="text" class="form-control" name="nome" id="nome" value="<?= $registro['nome'] ?>">
+                                            <input type="text" class="form-control" name="nome" id="nome"
+                                                value="<?= $registro['nome'] ?>">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Telefone</label>
-                                            <input type="text" name="telefone" id="telefone" class="form-control" value="<?= $registro['telefone'] ?>">
+                                            <input type="text" name="telefone" id="telefone" class="form-control"
+                                                value="<?= $registro['telefone'] ?>">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Nivel de Acesso</label>
@@ -124,11 +137,13 @@
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Usuario</label>
-                                            <input type="text" class="form-control" name="usuario" id="usuario" value="<?= $registro['usuario'] ?>">
+                                            <input type="text" class="form-control" name="usuario" id="usuario"
+                                                value="<?= $registro['usuario'] ?>">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Senha</label>
-                                            <input type="text" name="senha" id="senha" class="form-control" value="<?= $registro['senha'] ?>">
+                                            <input type="text" name="senha" id="senha" class="form-control"
+                                                value="<?= $registro['senha'] ?>">
                                         </div>
                                         <input type="hidden" name="id" id="id" value=" <?= $registro['id'] ?> ">
                                 </div>
@@ -142,12 +157,14 @@
                     </div>
 
                     <!-- Modal INFO-->
-                    <div class="modal fade" id="info-Funcionario<?= $registro['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="info-Funcionario<?= $registro['id'] ?>" tabindex="-1"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="exampleModalLabel">Informações do Funcionario</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <form class="row g-3" action="updateFuncionario.php" method="post">
@@ -183,9 +200,9 @@
                                 </form>
                             </div>
                         </div>
-                    <?php
+                        <?php
                 }
-                    ?>
+                ?>
             </table>
 
 
@@ -193,7 +210,8 @@
 
 
         <!-- Modal Create-->
-        <div class="modal fade" id="create-funcionario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="create-funcionario" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -227,8 +245,8 @@
                                 <input type="text" name="senha" id="senha" class="form-control">
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" >Cancelar</button>
-                                <button type="submit" class="btn btn-success" >Salvar</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-success">Salvar</button>
                             </div>
                         </form>
 
@@ -238,5 +256,4 @@
             </div>
         </div>
     </div>
-</div>
 </div>

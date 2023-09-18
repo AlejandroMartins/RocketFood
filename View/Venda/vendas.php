@@ -2,11 +2,9 @@
 <link rel="stylesheet" href="..\..\styles\venda.css">
 
 <div class="home">
-
     <div class="principal">
         <div class="Add-Table">
             <h1>Vendas</h1>
-
         </div>
 
         <hr>
@@ -49,7 +47,7 @@
                     </th>
                     <th>
                         Ações
-                    </th>
+                    </th cosplan="2">
                 </tr>
                 <?php
                 foreach ($lista as $registro) {
@@ -96,7 +94,9 @@
                             <button class="btn btn-danger icon btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#delete-venda<?= $registro['id'] ?>"><i
                                     class='bx bxs-trash'></i></i></button>
-
+                            <button class="btn btn-success icon btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#info-Venda<?= $registro['id'] ?>"><i
+                                    class='bx bx-info-circle'></i></button>
                         </td>
                     </tr>
                     <!-- Modal Delete-->
@@ -127,6 +127,25 @@
                             </div>
                         </div>
                     </div>
+                   
+                    <!-- Modal INFO -->
+                    <div class="modal fade" id="info-Venda<?= $registro['id'] ?>" tabindex="-1"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Comanda</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
 
 
@@ -137,5 +156,4 @@
             </table>
         </ul>
     </div>
-</div>
 </div>
