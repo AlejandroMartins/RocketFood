@@ -37,16 +37,7 @@ class DaoProduto
         return $lista;
     }
 
-    public function getById($id)
-    {
-        $pst = Connection::getPreparedStatement('select * from produto where id = ?;');
-        $pst->bindValue(1, $id);
-       
-        $pst->execute();
-        $list = $pst->fetch(PDO::FETCH_ASSOC);
-        $obj = new produto($list["nome"], $list["valor"],$list["descricao"], $list["id"]);
-        return $obj;
-    }
+  
 
     public function create(produto $produto)
     {

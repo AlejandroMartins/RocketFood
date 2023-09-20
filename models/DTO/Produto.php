@@ -14,12 +14,13 @@ class Produto
 	
 
     //Constructor
-    public function __construct($f, $m, $n, $a, $id = null){
+    public function __construct($f, $m, $n, $a, $idg, $id = null){
         $this->nome = $m;
         $this->valor = $f;
         $this->descricao = $a;
         $this->id = $id;  
 		$this->nome_imagem = $n;
+		$this->idgrupo = $idg;
     }
 
 

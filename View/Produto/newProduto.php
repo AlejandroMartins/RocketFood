@@ -22,17 +22,17 @@
 
 
     $nome = $_POST['nome'];
+    $idgrupo = $_POST['idgrupo'];
     $valor = $_POST['valor'];
     $descricao = $_POST['descricao'];
     $nome_imagem = $_POST['nome'];
     move_uploaded_file($_FILES['file']['tmp_name'], "../../Img/Produtos/$nome.png");
-    
+
     var_dump($nome_imagem);
-    $Produto = new Produto($valor, $nome,$nome_imagem, $descricao);
+    $Produto = new Produto($valor, $nome, $nome_imagem, $descricao, $idgrupo);
     $daoProduto = new DaoProduto();
 
     if ($daoProduto->create($Produto)) {
-        header("location: cardapio.php");
     } else {
         echo 'Not save.';
     }
