@@ -459,7 +459,7 @@ body.dark .home .text {
             bottom: 0;
             width: 100%;
             z-index: 3;
-            border-radius: 20px;
+            border-radius: 20px 20px 0px 0px;
             box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.1);
         }
     
