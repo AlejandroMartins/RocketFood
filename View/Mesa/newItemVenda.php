@@ -24,9 +24,10 @@
     var_dump($idVenda);
     $idProduto = $_POST['idproduto'];
     $quantidade = $_POST['quantidade'];
+    $observacao = $_POST['observacao'];
 
 
-    $itemVenda = new ItemVenda( $idProduto,$idVenda, $quantidade, 0, 0, null);
+    $itemVenda = new ItemVenda( $idProduto,$idVenda, $quantidade, 0, 0, $observacao, null);
 
     $daoItemVenda = new DaoItemVenda();
 

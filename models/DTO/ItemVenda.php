@@ -10,15 +10,17 @@ class ItemVenda
     private $quantidade;
 	private $preco;
     private $valorTotal;
+	private $descricao;
     
 
     //Constructor
-    public function __construct($idp, $idv, $qtd, $prc,$valtot,$id = null){
+    public function __construct($idp, $idv, $qtd, $prc,$valtot,$desc,$id = null){
         $this->id_produto = $idp;
 		$this->id_venda = $idv;
         $this->quantidade = $qtd;
 		$this->preco = $prc;
         $this->valorTotal = $valtot;
+		$this->descricao = $desc;
         $this->id = $id;  
     }
 
@@ -126,6 +128,26 @@ class ItemVenda
 	public function setId_venda($id_venda)
 	{
 		$this->id_venda = $id_venda;
+
+		return $this;
+	}
+
+	/**
+	 * Get the value of descricao
+	 */ 
+	public function getDescricao()
+	{
+		return $this->descricao;
+	}
+
+	/**
+	 * Set the value of descricao
+	 *
+	 * @return  self
+	 */ 
+	public function setDescricao($descricao)
+	{
+		$this->descricao = $descricao;
 
 		return $this;
 	}

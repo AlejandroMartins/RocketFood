@@ -141,18 +141,41 @@ require_once "../sidebar.php"; ?>
                                                                         </button>
                                                                     </form>
 
-                                                                    <button class="btn btn-primary btn-sm" id="imprimir">
-                                                                        <i class='bx bxs-file'></i>
+                                                                    <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-observacao">
+                                                                        <i class='bx bx-info-circle'></i>
                                                                     </button>
 
 
                                                                 </td>
 
                                                             </tr>
-                                                        <?php
+                                                            <!-- Modal-Observação -->
+                                                            <div class="modal fade" id="modal-observacao" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Observacao</h1>
+                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+
+
+                                                                            <div class="row g-3 align-items-center form-mesa">
+                                                                                <div class="col-auto">
+                                                                                    <label class="col-form-label"><?= $itens['observacao'] ?></label>
+                                                                                </div>
+
+
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            <?php
+
                                                         }
 
-                                                        ?>
+                                                            ?>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -198,7 +221,7 @@ require_once "../sidebar.php"; ?>
                                                         </div>
                                                         <button type="submit" class="btn btn-success">Adicionar</button>
                                                     </div>
-                                                   
+
 
                                                 </form>
                                             </div>
@@ -233,7 +256,7 @@ require_once "../sidebar.php"; ?>
                                             </h6>
                                             <div class="btns-footer">
                                                 <button class="btn btn-success btn-footer">Fechar
-                                                    </button>
+                                                </button>
                                                 <form action="cancelVenda.php" method="post">
                                                     <button class="btn btn-danger btn-footer">Cancelar
                                                         <input type="hidden" name="idvenda" id="idvenda" value="<?= $vendaAberta ?>">
@@ -252,6 +275,7 @@ require_once "../sidebar.php"; ?>
                             </div>
                         </div>
                     </div>
+
                 <?php
 
             }
@@ -260,7 +284,7 @@ require_once "../sidebar.php"; ?>
         </ul>
 
 
-        <!-- Modal -->
+        <!-- Modal-Create -->
         <div class="modal fade" id="create-table" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -271,7 +295,7 @@ require_once "../sidebar.php"; ?>
                     <div class="modal-body">
                         <form action="newMesa.php" method="post">
 
-                            <div class="row g-3 align-items-center form-mesa" style="margin-botton: 20px;">
+                            <div class="row g-3 align-items-center form-mesa">
                                 <div class="col-auto">
                                     <label class="col-form-label">Número da Mesa: </label>
                                 </div>
@@ -290,8 +314,8 @@ require_once "../sidebar.php"; ?>
             </div>
         </div>
 
-        
-        
+
+
         <input type="hidden" id="fortest" value="<?= $_SESSION['mesaaberta'] ?>">
     </div>
     <script>

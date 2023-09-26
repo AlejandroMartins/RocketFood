@@ -43,7 +43,9 @@ body {
     justify-content: start;
 }
 
-
+#modal-observacao {
+    z-index: 1090; /* Defina um valor maior que o z-index do primeiro modal */
+}
 /* Estilos para o modal */
 
 

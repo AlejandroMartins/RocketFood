@@ -24,11 +24,12 @@ class Daoitemvenda
 
     public function create(itemvenda $itemvenda)
     {
-        $sql = 'call inserir_itemvenda(?,?,?)';
+        $sql = 'call inserir_itemvenda(?,?,?,?)';
         $pst = Connection::getPreparedStatement($sql);
         $pst->bindValue(1, $itemvenda->getId_produto());
         $pst->bindValue(2, $itemvenda->getId_venda());
         $pst->bindValue(3, $itemvenda->getQuantidade());
+        $pst->bindValue(4, $itemvenda->getDescricao());
        
         if ($pst->execute()) {
             return true;
