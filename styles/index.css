@@ -48,26 +48,92 @@
 /* Estilos do botão de chamada para ação */
 .cta-button {
     display: inline-block;
-   
+
     color: #fff;
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
 }
 
+/* Estilos da seção principal */
+.hero {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5f5f5;
+    padding: 50px;
+}
 
-/* Estilos do rodapé */
-footer {
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
+.hero-text {
     text-align: center;
 }
 
-footer a {
+.hero h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #695CFE;
     color: #fff;
     text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
+
+.cta-button:hover {
+    background-color: #4F46CC;
+}
+
+.hero-image {
+    max-width: 100%;
+    border-radius: 20px;
+}
+
+/* Estilos da seção de recursos */
+.features {
+    background-color: #fff;
+    text-align: center;
+    padding: 50px;
+}
+
+.features h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+.features h3 {
+    font-size: 23px;
+    margin-bottom: 30px;
+}
+
+.feature {
+    display: inline-block;
+    margin: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    background-color: #fff;
+}
+
+/* Estilos do rodapé */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #695CFE;
+    color: #fff;
+    border-radius: 0 0 20px 20px;
+}
+
+footer p {
+    font-size: 14px;
+}
+
 
 
 @media screen and (max-width: 768px) {

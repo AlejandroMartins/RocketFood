@@ -13,60 +13,52 @@
 
         <body>
 
-            <div class="banner">
-                <h1>Rocket Food</h1>
-                <p>Gerenciamento de Pedidos em Restaurantes</p>
-            </div>
+<div class="banner">
+    <h1>Rocket Food</h1>
+    <p>Gerenciamento de Pedidos em Restaurantes</p>
+</div>
 
-            <section class="section section-img m-t-50">
-                <div class="sub-section">
-                    <h2 class="p-b-40">Descrição do Rocket Food</h2>
-                    <p>O Rocket Food é um software avançado de gerenciamento de pedidos projetado especificamente para
-                        restaurantes.
-                        Com recursos poderosos e uma interface fácil de usar, ele ajuda a otimizar suas operações e
-                        melhorar
-                        o
-                        atendimento ao cliente.
-                    </p>
-                </div>
-                <div class="">
-                    <img class="img-garcom" src="../Img/garcom.jpeg">
-                </div>
+<section class="section section-img m-t-50">
+    <div class="sub-section">
+        <h2 class="p-b-40">Descrição do Rocket Food</h2>
+        <p>O Rocket Food é um software avançado de gerenciamento de pedidos projetado especificamente para
+            restaurantes.
+            Com recursos poderosos e uma interface fácil de usar, ele ajuda a otimizar suas operações e
+            melhorar
+            o
+            atendimento ao cliente.
+        </p>
+    </div>
+    <div class="">
+        <img class="img-garcom" src="../Img/garcom.jpeg">
+    </div>
 
-            </section>
+</section>
 
-            <section class="section ">
-                <h2 calss="p-b-40">Recursos-chave</h2>
-                <ul>
-                    <li>Gerenciamento de pedidos em tempo real</li>
-                    <li>Integração com sistemas de pagamento</li>
-                    <li>Relatórios detalhados de vendas</li>
-                    <li>Controle de estoque e ingredientes</li>
-                    <li>Suporte multiplataforma (computadores, tablets, dispositivos móveis)</li>
-                </ul>
-            </section>
+<section id="saiba-mais" class="features">
+    <h2>Recursos do RocketFood</h2>
+    <div class="feature">
 
-            <section class="section">
-                <h2>Capturas de tela</h2>
-                <!-- Inserir capturas de tela do software aqui -->
-            </section>
+        <h3>Gerenciamento de Pedidos</h3>
+        <p>Acompanhe e gerencie pedidos de forma eficiente.</p>
+    </div>
+    <div class="feature">
 
-            <section class="section">
-                <h2>Depoimentos de clientes</h2>
-                <!-- Inserir depoimentos de clientes aqui -->
-            </section>
+        <h3>Menu Personalizado</h3>
+        <p>Crie e atualize facilmente seu cardápio.</p>
+    </div>
+    <div class="feature">
 
-            <section class="section">
-                <h2>Experimente o Rocket Food hoje mesmo!</h2>
-                <p>Entre em contato conosco para solicitar uma demonstração gratuita ou obter mais informações.</p>
-                <a href="contato.html" class="cta-button">Entre em contato</a>
-            </section>
+        <h3>Entrega Rápida</h3>
+        <p>Agilize a entrega de pedidos aos seus clientes.</p>
+    </div>
+</section>
 
-            <footer>
-                <p>&copy; 2023 Rocket Food. Todos os direitos reservados. | <a href="contato.html">Contato</a></p>
-            </footer>
+<footer style="background-color: #695CFE; color: #fff;">
+    <p>&copy; 2023 RocketFood - Todos os direitos reservados</p>
+</footer>
 
-        </body>
+</body>
 
     </div>
 </div>
