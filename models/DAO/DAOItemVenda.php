@@ -22,6 +22,15 @@ class Daoitemvenda
         return $list;
     }
 
+    public function getItemVendaCreated()
+    {
+        $pst = Connection::getPreparedStatement('select * from itemvenda where id = LAST_INSERT_ID();');
+        $pst->execute();
+        $list = $pst->fetch(PDO::FETCH_ASSOC);
+        return $list;
+
+    }
+
     public function create(itemvenda $itemvenda)
     {
         $sql = 'call inserir_itemvenda(?,?,?,?)';
@@ -41,7 +50,7 @@ class Daoitemvenda
      public function listForVenda($idVenda)
     {
         $lista = [];
-        $sql = 'select id, id_Venda, id_Produto, quantidade, preco, valortotal from itemvenda where id_venda = ?;';
+        $sql = 'select id, id_Venda, id_Produto, quantidade, preco, valortotal, observacao from itemvenda where id_venda = ?;';
         $pst = Connection::getPreparedStatement($sql);
         $pst->bindValue(1, $idVenda);
         $pst->execute();

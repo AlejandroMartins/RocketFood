@@ -14,7 +14,8 @@ require_once "../sidebar.php"; ?>
     <div class="principal">
         <div class="Add-Table">
             <h1>Mesas</h1>
-            <button type="button" class="btn btn-success btn-add" data-bs-toggle="modal" data-bs-target="#create-table"><i class='bx bx-plus-medical'></i></button>
+            <button type="button" class="btn btn-success btn-add" data-bs-toggle="modal"
+                data-bs-target="#create-table"><i class='bx bx-plus-medical'></i></button>
 
         </div>
         <hr>
@@ -34,36 +35,40 @@ require_once "../sidebar.php"; ?>
 
 
             foreach ($lista as $registro) {
-            ?>
+                ?>
                 <li>
                     <?php
                     $situacao = $registro['aberta'];
 
                     if ($situacao == 1) {
-                    ?>
-                        <button class="btn btn-success table table-components" data-bs-toggle="modal" data-bs-target="#venda<?= $registro['id'] ?>">
+                        ?>
+                        <button class="btn btn-success table table-components" data-bs-toggle="modal"
+                            data-bs-target="#venda<?= $registro['id'] ?>">
                             <?= $registro['numero'] ?>
                         </button>
-                    <?php
+                        <?php
                     }
                     if ($situacao == 0) {
-                    ?>
-                        <button class="btn btn-danger table table-components" data-bs-toggle="modal" data-bs-target="#venda<?= $registro['id'] ?>">
+                        ?>
+                        <button class="btn btn-danger table table-components" data-bs-toggle="modal"
+                            data-bs-target="#venda<?= $registro['id'] ?>">
                             <?= $registro['numero'] ?>
                         </button>
-                    <?php
+                        <?php
                     }
                     ?>
 
                     <!-- Modal Venda-->
-                    <div class="modal fade" id="venda<?= $registro['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
+                    <div class="modal fade" id="venda<?= $registro['id'] ?>" tabindex="-1"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog ">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="exampleModalLabel">Mesa
                                         <?= $registro['numero'] ?>
                                     </h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
 
@@ -73,19 +78,25 @@ require_once "../sidebar.php"; ?>
                                     <!-- Conteúdo da aba Comanda -->
                                     <?php
                                     if ($situacao == 1) {
-                                    ?>
+                                        ?>
 
-                                    <?php
+                                        <?php
                                     }
                                     if ($situacao == 0) {
-                                    ?>
+                                        ?>
 
                                         <ul class="nav nav-tabs" id="myTab<?= $registro['id'] ?>" role="tablist">
                                             <li class="nav-item" role="presentation">
-                                                <button class="nav-link active" id="home-tab<?= $registro['id'] ?>" data-bs-toggle="tab" data-bs-target="#home-tab-pane<?= $registro['id'] ?>" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Comanda</button>
+                                                <button class="nav-link active" id="home-tab<?= $registro['id'] ?>"
+                                                    data-bs-toggle="tab" data-bs-target="#home-tab-pane<?= $registro['id'] ?>"
+                                                    type="button" role="tab" aria-controls="home-tab-pane"
+                                                    aria-selected="true">Comanda</button>
                                             </li>
                                             <li class="nav-item" role="presentation">
-                                                <button class="nav-link" id="profile-tab<?= $registro['id'] ?>" data-bs-toggle="tab" data-bs-target="#profile-tab-pane<?= $registro['id'] ?>" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Adicionar
+                                                <button class="nav-link" id="profile-tab<?= $registro['id'] ?>"
+                                                    data-bs-toggle="tab"
+                                                    data-bs-target="#profile-tab-pane<?= $registro['id'] ?>" type="button"
+                                                    role="tab" aria-controls="profile-tab-pane" aria-selected="false">Adicionar
                                                     Produto</button>
                                             </li>
                                         </ul>
@@ -93,7 +104,8 @@ require_once "../sidebar.php"; ?>
 
                                         <div class="tab-content" id="myTabContent<?= $registro['id'] ?>">
                                             <!-- Aba Comanda -->
-                                            <div class="tab-pane fade show active" id="home-tab-pane<?= $registro['id'] ?>" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                                            <div class="tab-pane fade show active" id="home-tab-pane<?= $registro['id'] ?>"
+                                                role="tabpanel" aria-labelledby="home-tab" tabindex="0">
                                                 <h5>Produtos Consumidos</h5>
                                                 <table class="table table-produtos">
 
@@ -119,7 +131,7 @@ require_once "../sidebar.php"; ?>
                                                         foreach ($lista as $itens) {
                                                             $total = $total + $itens['valortotal'];
                                                             $arrayproduto = $daoItemVenda->getProduto($itens['id_Produto']);
-                                                        ?>
+                                                            ?>
                                                             <tr>
                                                                 <td class="align-left">
                                                                     <?= implode($arrayproduto) ?>
@@ -135,13 +147,15 @@ require_once "../sidebar.php"; ?>
                                                                 </td>
                                                                 <td class="table-acoes">
                                                                     <form action="deleteItemVenda.php" method="post">
-                                                                        <input type="hidden" name="id" id="id" value=" <?= $itens['id'] ?> ">
+                                                                        <input type="hidden" name="id" id="id"
+                                                                            value=" <?= $itens['id'] ?> ">
                                                                         <button class="btn btn-danger btn-sm">
                                                                             <i class='bx bxs-trash'></i>
                                                                         </button>
                                                                     </form>
 
-                                                                    <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-observacao">
+                                                                    <button class="btn btn-success btn-sm" data-toggle="modal"
+                                                                        data-target="#modal-observacao">
                                                                         <i class='bx bx-info-circle'></i>
                                                                     </button>
 
@@ -149,20 +163,31 @@ require_once "../sidebar.php"; ?>
                                                                 </td>
 
                                                             </tr>
+                                                            <?php
+                                                            $observacao = $itens['observacao'];
+                                                            if ($itens['observacao'] == null) {
+                                                                $observacao = "Não tem observação";
+                                                            }
+                                                            ?>
                                                             <!-- Modal-Observação -->
-                                                            <div class="modal fade" id="modal-observacao" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                                <div class="modal-dialog">
+                                                            <div class="modal fade " id="modal-observacao" tabindex="-1"
+                                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog modal-sm">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
-                                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Observacao</h1>
-                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">
+                                                                                Observacao</h1>
+                                                                            <button type="button" class="btn-close"
+                                                                                data-bs-dismiss="modal" aria-label="Close"></button>
                                                                         </div>
                                                                         <div class="modal-body">
 
 
                                                                             <div class="row g-3 align-items-center form-mesa">
                                                                                 <div class="col-auto">
-                                                                                    <label class="col-form-label"><?= $itens['observacao'] ?></label>
+                                                                                    <label class="col-form-label">
+                                                                                        <?= $observacao ?>
+                                                                                    </label>
                                                                                 </div>
 
 
@@ -171,19 +196,21 @@ require_once "../sidebar.php"; ?>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            <?php
+                                                                <?php
 
                                                         }
 
-                                                            ?>
+                                                        ?>
                                                     </tbody>
                                                 </table>
                                             </div>
                                             <!-- Aba Adicionar Produtos -->
-                                            <div class="tab-pane fade show" id="profile-tab-pane<?= $registro['id'] ?>" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+                                            <div class="tab-pane fade show" id="profile-tab-pane<?= $registro['id'] ?>"
+                                                role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
                                                 <form action="newItemVenda.php" method="post">
                                                     <br>
-                                                    <input type="hidden" name="id_venda" id="id_venda" value="<?= $vendaAberta ?>">
+                                                    <input type="hidden" name="id_venda" id="id_venda"
+                                                        value="<?= $vendaAberta ?>">
                                                     <label for="idproduto">Produto</label><br>
                                                     <select class="form-select" name="idproduto" id="idproduto">
 
@@ -207,19 +234,26 @@ require_once "../sidebar.php"; ?>
                                                     </select><br>
                                                     <div class="col-12">
                                                         <label class="form-label">Observação</label>
-                                                        <input type="text" class="form-control" name="observacao" id="observacao">
+                                                        <input type="text" class="form-control" name="observacao"
+                                                            id="observacao">
                                                     </div><br>
                                                     <label for="quantidade">Quantidade</label><br><br>
 
                                                     <div class="add-qtd">
                                                         <div class="input-group">
                                                             <div class="input-group-button">
-                                                                <button class="btn btn-danger" type="button" id="btn-minus"><strong>-</strong></button>
-                                                                <input type="number" class="form-control text-center input-add-qtd" id="input-number" value="1" name="quantidade" id="quantidade">
-                                                                <button class="btn btn-success" type="button" id="btn-plus"><strong>+</strong></button>
+                                                                <button class="btn btn-danger" type="button"
+                                                                    id="btn-minus"><strong>-</strong></button>
+                                                                <input type="number"
+                                                                    class="form-control text-center input-add-qtd"
+                                                                    id="input-number" value="1" name="quantidade"
+                                                                    id="quantidade">
+                                                                <button class="btn btn-success" type="button"
+                                                                    id="btn-plus"><strong>+</strong></button>
                                                             </div>
                                                         </div>
-                                                        <button type="submit" class="btn btn-success">Adicionar</button>
+                                                        <button type="submit" data-bs-target="#exampleModalToggle2"
+                                                            class="btn btn-success">Adicionar</button>
                                                     </div>
 
 
@@ -228,7 +262,7 @@ require_once "../sidebar.php"; ?>
 
 
                                         </div>
-                                    <?php
+                                        <?php
 
                                     }
                                     ?>
@@ -239,15 +273,15 @@ require_once "../sidebar.php"; ?>
                                 <div class="modal-footer ">
                                     <?php
                                     if ($situacao == 1) {
-                                    ?>
+                                        ?>
                                         <form action="newVenda.php" method="post">
                                             <input type="hidden" name="id_mesa" id="id_mesa" value="<?= $registro['id'] ?>">
                                             <button class="btn btn-danger">Abrir venda</button>
                                         </form>
-                                    <?php
+                                        <?php
                                     }
                                     if ($situacao == 0) {
-                                    ?>
+                                        ?>
                                         <form action="closeVenda.php" class="form-footer" method="post">
                                             <input type="hidden" name="total" id="total" value="<?= sprintf("%.2f", $total) ?>">
                                             <input type="hidden" name="idvenda" id="idvenda" value="<?= $vendaAberta ?>">
@@ -259,13 +293,15 @@ require_once "../sidebar.php"; ?>
                                                 </button>
                                                 <form action="cancelVenda.php" method="post">
                                                     <button class="btn btn-danger btn-footer">Cancelar
-                                                        <input type="hidden" name="idvenda" id="idvenda" value="<?= $vendaAberta ?>">
+                                                        <input type="hidden" name="idvenda" id="idvenda"
+                                                            value="<?= $vendaAberta ?>">
                                                 </form>
 
                                                 </button>
                                             </div>
                                         </form>
-                                    <?php
+
+                                        <?php
                                     }
                                     ?>
 
@@ -276,11 +312,11 @@ require_once "../sidebar.php"; ?>
                         </div>
                     </div>
 
-                <?php
+                    <?php
 
             }
-                ?>
-                </li>
+            ?>
+            </li>
         </ul>
 
 
@@ -314,60 +350,57 @@ require_once "../sidebar.php"; ?>
             </div>
         </div>
 
+        <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+            tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Modal 2</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Hide this modal and show the first with the button below.
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back
+                            to first</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 
 
         <input type="hidden" id="fortest" value="<?= $_SESSION['mesaaberta'] ?>">
     </div>
     <script>
+        var input = document.getElementById("input-number");
+        var btnMinus = document.getElementById("btn-minus");
+        var btnPlus = document.getElementById("btn-plus");
+
+        btnMinus.addEventListener('click', () => {
+            var value = parseInt(input.value);
+            console.log('awdwa');
+            if (value > 1) {
+                input.value = value - 1;
+            }
+        });
+
+        btnPlus.addEventListener('click', () => {
+            console.log('awdwa');
+            var value = parseInt(input.value);
+            input.value = value + 1;
+        });
+        
         window.addEventListener('load', () => {
             const id = document.getElementById("fortest").value;
             const myModal = new bootstrap.Modal(document.getElementById('venda' + id));
             myModal.show();
         });
 
-        $(document).ready(() => {
-            var input = document.getElementById("input-number");
-            var btnMinus = document.getElementById("btn-minus");
-            var btnPlus = document.getElementById("btn-plus");
 
-            btnMinus.addEventListener('click', () => {
-                var value = parseInt(input.value);
-                if (value > 1) {
-                    input.value = value - 1;
-                }
 
-            });
 
-            btnPlus.addEventListener('click', () => {
-                var value = parseInt(input.value);
-                input.value = value + 1;
-            });
-        });
     </script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.0.0-alpha.12/html2canvas.min.js"></script>
-    <script>
-        document.getElementById("imprimir").addEventListener("click", function() {
-            // Captura a área que deseja imprimir como uma imagem
-            html2canvas(document.querySelector(".comandinha")).then(function(canvas) {
-                var imgData = canvas.toDataURL("image/png");
-
-                // Cria uma nova janela para exibir a imagem
-                var printWin = window.open("", "_blank");
-                printWin.document.open();
-                printWin.document.write('<html><head><title>Comandinha</title></head><body>');
-                printWin.document.write('<img src="' + imgData + '">');
-                printWin.document.write('</body></html>');
-                printWin.document.close();
-
-                // Aciona o comando de impressão na nova janela
-                printWin.print();
-                printWin.close();
-            });
-        });
-    </script>
-
-
-
-
 </div>

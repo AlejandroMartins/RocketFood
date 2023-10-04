@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+
+  .comanda {
+    width: 300px;
+    margin: 0 auto;
+
+    padding: 10px;
+  }
+
+  .header {
+    text-align: center;
+  }
+
+  .data {
+    font-weight: bold;
+  }
+
+  .lista-produtos {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    
+    padding: 8px;
+  }
+  tr{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  th {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    /* Ajuste a altura conforme necessário */
+  }
+
+
+  .observacoes {
+    margin-top: 10px;
+  }
+
+  .line {
+    letter-spacing: 3px;
+  }

@@ -54,6 +54,9 @@ create table ItemVenda(
  situacao bool,
  dataPedido datetime,
  valorTotal decimal(10,2),
+ observacao varchar(50),
+ dataItemVenda date,
+ hora time,
  FOREIGN KEY (id_produto) REFERENCES Produto(id) on delete cascade,
   FOREIGN KEY (id_venda) REFERENCES Venda(id) on delete cascade
  );
@@ -79,32 +82,34 @@ INSERT INTO GrupoProduto (nome) VALUES
 
 -- Inserção dos produtos
 -- Grupo: Bebidas
-INSERT INTO Produto (nome, valor, descricao, id_grupo) VALUES
-    ('Refrigerante', 5.00, 'Lata de refrigerante.', 1),
-    ('Água Mineral', 2.50, 'Garrafa de água mineral.', 1),
-    ('Suco Natural', 7.50, 'Copo de suco de frutas naturais.', 1),
-    ('Cerveja', 6.00, 'Garrafa de cerveja.', 1);
+-- Grupo: Bebidas
+INSERT INTO Produto (nome, valor, descricao, id_grupo, nome_imagem) VALUES
+    ('Refrigerante', 5.00, 'Lata de refrigerante.', 1, 'refrigerante'),
+    ('Água Mineral', 2.50, 'Garrafa de água mineral.', 1, 'agua_mineral'),
+    ('Suco Natural', 7.50, 'Copo de suco de frutas naturais.', 1, 'suco_natural'),
+    ('Cerveja', 6.00, 'Garrafa de cerveja.', 1, 'cerveja');
 
 -- Grupo: Entradas
-INSERT INTO Produto (nome, valor, descricao, id_grupo) VALUES
-    ('Bruschetta', 8.00, 'Pão italiano com tomate e manjericão.', 2),
-    ('Carpaccio', 12.50, 'Finas fatias de carne crua temperada.', 2),
-    ('Salada Caprese', 9.00, 'Salada com tomate, mussarela e manjericão.', 2),
-    ('Lula à Dorê', 10.00, 'Anéis de lula fritos.', 2);
+INSERT INTO Produto (nome, valor, descricao, id_grupo, nome_imagem) VALUES
+    ('Bruschetta', 8.00, 'Pão italiano com tomate e manjericão.', 2, 'bruschetta'),
+    ('Carpaccio', 12.50, 'Finas fatias de carne crua temperada.', 2, 'carpaccio'),
+    ('Salada Caprese', 9.00, 'Salada com tomate, mussarela e manjericão.', 2, 'salada_caprese'),
+    ('Lula à Dorê', 10.00, 'Anéis de lula fritos.', 2, 'lula_dore');
 
 -- Grupo: Pratos Principais
-INSERT INTO Produto (nome, valor, descricao, id_grupo) VALUES
-    ('Spaghetti Carbonara', 18.00, 'Massa com molho de ovos, queijo parmesão e bacon.', 3),
-    ('Filé Mignon', 25.00, 'Filé grelhado com molho à escolha.', 3),
-    ('Risoto de Frutos do Mar', 22.50, 'Risoto com camarões, lulas e mexilhões.', 3),
-    ('Lasanha Bolonhesa', 20.00, 'Camadas de massa intercaladas com molho de carne.', 3);
+INSERT INTO Produto (nome, valor, descricao, id_grupo, nome_imagem) VALUES
+    ('Spaghetti Carbonara', 18.00, 'Massa com molho de ovos, queijo parmesão e bacon.', 3, 'spaghetti_carbonara'),
+    ('Filé Mignon', 25.00, 'Filé grelhado com molho à escolha.', 3, 'file_mignon'),
+    ('Risoto de Frutos do Mar', 22.50, 'Risoto com camarões, lulas e mexilhões.', 3, 'risoto_frutos_mar'),
+    ('Lasanha Bolonhesa', 20.00, 'Camadas de massa intercaladas com molho de carne.', 3, 'lasanha_bolonhesa');
 
 -- Grupo: Sobremesas
-INSERT INTO Produto (nome, valor, descricao, id_grupo) VALUES
-    ('Tiramisù', 9.00, 'Doce italiano com camadas de biscoito, café e creme.', 4),
-    ('Pudim de Leite', 7.50, 'Pudim à base de leite condensado.', 4),
-    ('Mousse de Chocolate', 6.00, 'Mousse cremoso de chocolate.', 4),
-    ('Sorvete de Frutas', 5.50, 'Sorvete de frutas variadas.', 4);
+INSERT INTO Produto (nome, valor, descricao, id_grupo, nome_imagem) VALUES
+    ('Tiramisù', 9.00, 'Doce italiano com camadas de biscoito, café e creme.', 4, 'tiramisu'),
+    ('Pudim de Leite', 7.50, 'Pudim à base de leite condensado.', 4, 'pudim_leite'),
+    ('Mousse de Chocolate', 6.00, 'Mousse cremoso de chocolate.', 4, 'mousse_chocolate'),
+    ('Sorvete de Frutas', 5.50, 'Sorvete de frutas variadas.', 4, 'sorvete_frutas');
+
 
 -- Inserts para tabela Funcionario
 INSERT INTO Funcionario (nome, telefone, nivel_acesso, usuario, senha) VALUES ('João Silva', '(11) 98765-4321', 'Administrador', 'joao', 'senha123');
@@ -118,33 +123,9 @@ INSERT INTO Funcionario (nome, telefone, nivel_acesso, usuario, senha) VALUES ('
 INSERT INTO Funcionario (nome, telefone, nivel_acesso, usuario, senha) VALUES ('Juliana Pereira', '(11) 98765-7654', 'Atendente', 'juliana', 'senha654');
 INSERT INTO Funcionario (nome, telefone, nivel_acesso, usuario, senha) VALUES ('Roberto Costa', '(11) 99876-4321', 'Atendente', 'roberto', 'abc789');
 
--- Inserir uma venda com itens de venda
-INSERT INTO Venda (data, horaChegada, horaSaida, aberta, valorTotal, id_mesa, id_funcionario)
-VALUES ('2023-09-04', '12:00:00', '13:30:00', false, 35.00, 1, 1);
-
--- Inserir itens de venda para a venda acima
-INSERT INTO ItemVenda (id_produto, id_venda, quantidade, dataPedido, preco, valorTotal)
-VALUES (1, 1, 2, NOW(), 5.00, 10.00);
-
-INSERT INTO ItemVenda (id_produto, id_venda, quantidade, dataPedido, preco, valorTotal)
-VALUES (4, 1, 1, NOW(), 6.00, 6.00);
-
--- Inserir outra venda na mesa 2 com itens de venda
-INSERT INTO Venda (data, horaChegada, horaSaida, aberta, valorTotal, id_mesa, id_funcionario)
-VALUES ('2023-09-04', '13:00:00', '14:30:00', false, 42.50, 2, 2);
-
--- Inserir itens de venda para a venda acima
-INSERT INTO ItemVenda (id_produto, id_venda, quantidade, dataPedido, preco, valorTotal)
-VALUES (3, 2, 1, NOW(), 7.50, 22.50);
-
-INSERT INTO ItemVenda (id_produto, id_venda, quantidade, dataPedido, preco, valorTotal)
-VALUES (2, 2, 2, NOW(), 2.50, 5.00);
-
-
-
 DELIMITER $$
 
-CREATE PROCEDURE `inserir_itemvenda`(IN produto_id INT, IN venda_id INT, IN quantidade INT)
+CREATE PROCEDURE `inserir_itemvenda`(IN produto_id INT, IN venda_id INT, IN quantidade INT, IN observacao varchar(50))
 BEGIN
     
     IF produto_id IN (SELECT id_produto FROM itemvenda where id_venda = venda_id) THEN
@@ -155,8 +136,8 @@ BEGIN
         WHERE iv.id_produto = produto_id and iv.id_venda = venda_id;
     ELSE
         
-        INSERT INTO itemvenda (id_produto, id_venda, quantidade, dataPedido, situacao, preco, valorTotal)
-        VALUES (produto_id, venda_id, quantidade, NOW(), true, (SELECT valor FROM produto WHERE id = produto_id), (quantidade * (SELECT valor FROM produto WHERE id = produto_id)));
+        INSERT INTO itemvenda (id_produto, id_venda, quantidade, dataPedido, situacao, preco, valorTotal,observacao, dataItemVenda, hora)
+        VALUES (produto_id, venda_id, quantidade, NOW(), true, (SELECT valor FROM produto WHERE id = produto_id), (quantidade * (SELECT valor FROM produto WHERE id = produto_id)),observacao, now(), now());
     END IF;
 END $$
 
@@ -190,51 +171,3 @@ END
 $$
 DELIMITER ;
 
-CREATE VIEW ViewVendasPorMesa AS
-SELECT m.numero AS NumeroMesa, v.valorTotal AS ValorTotal
-FROM Mesa m
-INNER JOIN Venda v ON m.id = v.id_mesa;
-
-CREATE VIEW ViewVendasPorFuncionario AS
-SELECT f.nome AS NomeFuncionario, v.data AS DataVenda, v.valorTotal AS ValorTotal
-FROM Funcionario f
-INNER JOIN Venda v ON f.id = v.id_funcionario;
-
-CREATE VIEW ViewVendasPorGrupoProduto AS
-SELECT gp.nome AS NomeGrupo, SUM(iv.valorTotal) AS ValorTotalVendas
-FROM GrupoProduto gp
-JOIN Produto p ON gp.id = p.id_grupo
-JOIN ItemVenda iv ON p.id = iv.id_produto
-JOIN Venda v ON iv.id_venda = v.id
-GROUP BY gp.nome;
-
-CREATE VIEW ViewResumoVendasDiarias AS
-SELECT DATE(data) AS Data, COUNT(id) AS NumeroDeVendas, SUM(valorTotal) AS ReceitaTotal,
-       AVG(valorTotal) AS MediaDeVendasPorDia
-FROM Venda
-GROUP BY DATE(data);
-
-CREATE VIEW ViewProdutosVendidosNoDia AS
-SELECT v.data AS Data,
-       m.numero AS Mesa,
-       iv.dataPedido AS Horario,
-       p.nome AS Produto,
-       iv.quantidade
-FROM Venda v
-JOIN ItemVenda iv ON v.id = iv.id_venda
-JOIN Produto p ON iv.id_produto = p.id
-JOIN Mesa m ON v.id_mesa = m.id
-WHERE DATE(v.data) = CURDATE();
-
-
-select * from ViewVendasPorMesa;
-
-select * from ViewVendasPorFuncionario;
-
-select * from ViewVendasPorGrupoProduto;
-
-select * from ViewResumoVendasDiarias;
-
-select * from ViewProdutosVendidosNoDia;
-
-select * from produto;
