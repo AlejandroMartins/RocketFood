@@ -58,22 +58,16 @@
                             <?= $registro['usuario'] ?>
                         </td>
 
-                        <td>
-
+                        <td class = "btn-acoes">
                             <button class="btn btn-success icon btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#info-Funcionario<?= $registro['id'] ?>"><i
                                     class='bx bx-info-circle'></i></button>
-
                             <button class="btn btn-primary icon btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#editar-Funcionario<?= $registro['id'] ?>"><i
                                     class='bx bxs-edit'></i></button>
-
-
-
                             <button class="btn btn-danger icon btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#delete-Funcionario<?= $registro['id'] ?>"><i
                                     class='bx bxs-trash'></i></i></button>
-
                         </td>
                     </tr>
                     <!-- Modal Delete-->

@@ -31,6 +31,15 @@ class Daoitemvenda
 
     }
 
+    public function getMesaforItemVenda()
+    {
+        $pst = Connection::getPreparedStatement('call getMesaforItemVenda(LAST_INSERT_ID())');
+        $pst->execute();
+        $list = $pst->fetch(PDO::FETCH_ASSOC);
+        return $list;
+
+    }
+
     public function create(itemvenda $itemvenda)
     {
         $sql = 'call inserir_itemvenda(?,?,?,?)';
@@ -46,6 +55,8 @@ class Daoitemvenda
             return false;
         }
     }
+
+    
 
      public function listForVenda($idVenda)
     {

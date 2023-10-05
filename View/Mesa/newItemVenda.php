@@ -42,6 +42,7 @@
 
   $item = $daoItemVenda->getItemVendaCreated();
 
+  $mesa = $daoItemVenda->getMesaforItemVenda();
 
   $observacao = $item['observacao'];
   if ($item['observacao'] = null) {
@@ -56,7 +57,7 @@
     <div class="comanda">
       <p class="line">------------------------------------</p>
       <div class="header">
-        <h1>MESA 5</h1>
+        <h1>MESA <?= implode($mesa)?></h1>
       </div>
       <p class="line">------------------------------------</p>
       <div class="data">
