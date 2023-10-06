@@ -140,11 +140,18 @@ require_once "../sidebar.php"; ?>
                                                                             <i class='bx bxs-trash'></i>
                                                                         </button>
                                                                     </form>
-
-                                                                    <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-observacao">
-                                                                        <i class='bx bx-info-circle'></i>
-                                                                    </button>
-
+                                                                    <form action="imprimirItemVenda.php" method="post">
+                                                                    <input type="hidden" name="dataPedido" id="dataPedido" value=" <?= $itens['dataPedido'] ?> ">
+                                                                    <input type="hidden" name="hora" id="hora" value=" <?= $itens['hora'] ?> ">
+                                                                        <input type="hidden" name="quantidade" id="quantidade" value=" <?= $itens['quantidade'] ?> ">
+                                                                        <input type="hidden" name="observacao" id="observacao" value=" <?= $itens['observacao'] ?> "
+                                                                        <input type="hidden" name="preco" id="preco" value=" <?= $itens['preco'] ?> ">
+                                                                        <input type="hidden" name="valortotal" id="valortotal" value=" <?= $itens['valortotal'] ?> ">
+                                                                        <input type="hidden" name="produto" id="produto" value=" <?=  implode($arrayproduto) ?> ">
+                                                                        <button class="btn btn-success btn-sm">
+                                                                            <i class='bx bx-file'></i>
+                                                                        </button>
+                                                                    </form>
 
                                                                 </td>
 

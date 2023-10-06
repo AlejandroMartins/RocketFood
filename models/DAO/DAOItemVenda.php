@@ -42,7 +42,7 @@ class Daoitemvenda
 
     public function create(itemvenda $itemvenda)
     {
-        $sql = 'call inserir_itemvenda(?,?,?,?)';
+        $sql = 'insert into itemvenda (id_produto, id_venda, quantidade, observacao) values (?,?,?,?);';
         $pst = Connection::getPreparedStatement($sql);
         $pst->bindValue(1, $itemvenda->getId_produto());
         $pst->bindValue(2, $itemvenda->getId_venda());
@@ -61,7 +61,7 @@ class Daoitemvenda
      public function listForVenda($idVenda)
     {
         $lista = [];
-        $sql = 'select id, id_Venda, id_Produto, quantidade, preco, valortotal, observacao from itemvenda where id_venda = ?;';
+        $sql = 'select id, id_Venda, id_Produto, quantidade, preco, valortotal, observacao, dataPedido, hora from itemvenda where id_venda = ?;';
         $pst = Connection::getPreparedStatement($sql);
         $pst->bindValue(1, $idVenda);
         $pst->execute();
@@ -102,7 +102,3 @@ class Daoitemvenda
 
 
 }
-
-
-
-?>

@@ -35,90 +35,9 @@
   $daoItemVenda = new DaoItemVenda();
 
   if ($daoItemVenda->create($itemVenda)) {
-    // header("location: mesa.php");
+    header("location: mesa.php");
   } else {
-
   }
-
-  $item = $daoItemVenda->getItemVendaCreated();
-
-  $mesa = $daoItemVenda->getMesaforItemVenda();
-
-  $observacao = $item['observacao'];
-  if ($item['observacao'] = null) {
-    $observacao = 'Esse pedido não tem observação';
-  }
-
-  $nome_produto = $daoItemVenda->getProduto($item['id_produto']);
   ?>
 
-
-  <body>
-    <div class="comanda">
-      <p class="line">------------------------------------</p>
-      <div class="header">
-        <h1>MESA <?= implode($mesa)?></h1>
-      </div>
-      <p class="line">------------------------------------</p>
-      <div class="data">
-        <p>Data:
-          <?= $item['dataItemVenda'] ?>
-        </p>
-        <p>Hora:
-          <?= $item['hora'] ?>
-        </p>
-      </div>
-      <p class="line">------------------------------------</p>
-      <div class="lista-produtos">
-        <table>
-          <tr classs="header-lista">
-            <th>Qtd</th>
-            <th>Produto</th>
-            <th>Valor</th>
-          </tr>
-
-          <tr class="produto">
-            <td>
-              <?= $item['quantidade'] ?>
-            </td>
-            <td>
-              <?= implode($nome_produto) ?>
-            </td>
-            <td>
-              <?= $item['valorTotal'] ?>
-            </td>
-          </tr>
-        </table>
-      </div>
-      <p class="line">------------------------------------</p>
-      <div class="observacoes">
-        <p class="data">Observações:</p>
-        <p>-
-          <?= $observacao ?>
-        </p>
-      </div>
-      <p class="line">------------------------------------</p>
-    </div>
-
-    
-  </body>
-
   </html>
-
-
-</body>
-<script>
-
- 
-  window.addEventListener('afterprint', function () {
-    // Redireciona a página para a URL desejada após a impressão
-    window.location.href = 'mesa.php';
-  });
-  window.addEventListener('load', () => {
-    window.print();
-  })
- 
-
-</script>
-
-</html>

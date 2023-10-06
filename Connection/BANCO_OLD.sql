@@ -52,9 +52,10 @@ create table ItemVenda(
  quantidade integer,
  preco decimal(10,2),
  situacao bool,
- dataPedido date,
+ dataPedido datetime,
  valorTotal decimal(10,2),
  observacao varchar(50),
+ dataItemVenda date,
  hora time,
  FOREIGN KEY (id_produto) REFERENCES Produto(id) on delete cascade,
   FOREIGN KEY (id_venda) REFERENCES Venda(id) on delete cascade
@@ -124,17 +125,23 @@ INSERT INTO Funcionario (nome, telefone, nivel_acesso, usuario, senha) VALUES ('
 
 DELIMITER $$
 
-DELIMITER $$
-CREATE TRIGGER `itemvendabeforeinsert` Before INSERT ON `itemvenda` FOR EACH ROW
+CREATE PROCEDURE `inserir_itemvenda`(IN produto_id INT, IN venda_id INT, IN quantidade INT, IN observacao varchar(50))
 BEGIN
-set new.dataPedido = now();
-set new.preco = (SELECT valor FROM produto WHERE id = new.id_produto);
-set new.valorTotal = (SELECT valor FROM produto WHERE id =
-new.id_produto)*new.quantidade;
-END
-$$
-DELIMITER ;
+    
+    IF produto_id IN (SELECT id_produto FROM itemvenda where id_venda = venda_id) THEN
+       
+        UPDATE itemvenda iv
+        SET iv.quantidade = iv.quantidade + quantidade,
+		iv.valorTotal = iv.valorTotal + quantidade * (SELECT valor FROM produto WHERE id = produto_id)
+        WHERE iv.id_produto = produto_id and iv.id_venda = venda_id;
+    ELSE
+        
+        INSERT INTO itemvenda (id_produto, id_venda, quantidade, dataPedido, situacao, preco, valorTotal,observacao, dataItemVenda, hora)
+        VALUES (produto_id, venda_id, quantidade, NOW(), true, (SELECT valor FROM produto WHERE id = produto_id), (quantidade * (SELECT valor FROM produto WHERE id = produto_id)),observacao, now(), now());
+    END IF;
+END $$
 
+DELIMITER ;
 
 
 DELIMITER $$
