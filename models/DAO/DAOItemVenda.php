@@ -15,10 +15,10 @@ class Daoitemvenda
     {
         $pst = Connection::getPreparedStatement('select nome from produto where id = ?;');
         $pst->bindValue(1, $id);
-       
+
         $pst->execute();
         $list = $pst->fetch(PDO::FETCH_ASSOC);
-      
+
         return $list;
     }
 
@@ -28,7 +28,6 @@ class Daoitemvenda
         $pst->execute();
         $list = $pst->fetch(PDO::FETCH_ASSOC);
         return $list;
-
     }
 
     public function getMesaforItemVenda()
@@ -37,18 +36,17 @@ class Daoitemvenda
         $pst->execute();
         $list = $pst->fetch(PDO::FETCH_ASSOC);
         return $list;
-
     }
 
     public function create(itemvenda $itemvenda)
     {
-        $sql = 'insert into itemvenda (id_produto, id_venda, quantidade, observacao) values (?,?,?,?);';
+        $sql = 'call inserir_itemvenda(?, ?, ?, ?);';
         $pst = Connection::getPreparedStatement($sql);
         $pst->bindValue(1, $itemvenda->getId_produto());
         $pst->bindValue(2, $itemvenda->getId_venda());
         $pst->bindValue(3, $itemvenda->getQuantidade());
         $pst->bindValue(4, $itemvenda->getDescricao());
-       
+
         if ($pst->execute()) {
             return true;
         } else {
@@ -56,9 +54,26 @@ class Daoitemvenda
         }
     }
 
-    
 
-     public function listForVenda($idVenda)
+    // public function create(itemvenda $itemvenda)
+    // {
+    //     $sql = 'insert into itemvenda (id_produto, id_venda, quantidade, observacao) values (?,?,?,?);';
+    //     $pst = Connection::getPreparedStatement($sql);
+    //     $pst->bindValue(1, $itemvenda->getId_produto());
+    //     $pst->bindValue(2, $itemvenda->getId_venda());
+    //     $pst->bindValue(3, $itemvenda->getQuantidade());
+    //     $pst->bindValue(4, $itemvenda->getDescricao());
+
+    //     if ($pst->execute()) {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
+
+
+
+    public function listForVenda($idVenda)
     {
         $lista = [];
         $sql = 'select id, id_Venda, id_Produto, quantidade, preco, valortotal, observacao, dataPedido, hora from itemvenda where id_venda = ?;';
@@ -68,7 +83,7 @@ class Daoitemvenda
         $lista = $pst->fetchAll(PDO::FETCH_ASSOC);
         return $lista;
     }
-    
+
     public function delete($id)
     {
         $sql = 'delete from itemvenda where id = ?';
@@ -79,8 +94,6 @@ class Daoitemvenda
         } else {
             return false;
         }
-        
-        
     }
 
     public function update(itemvenda $itemvenda)
@@ -97,8 +110,4 @@ class Daoitemvenda
             return false;
         }
     }
-
-
-
-
 }

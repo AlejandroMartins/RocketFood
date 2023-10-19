@@ -5,10 +5,14 @@
     <div class="principal">
         <div class="Add-Table">
             <h1>Vendas</h1>
-            <form action="vendas.php">
-                <input type="date" type= 'submit' class="filtro-data" class="form-control" name="filtro-data" id="filtro-data">
-               
-            </form>
+            <div class="filtro-btn">
+                <form action="vendas.php">
+                    <input type="date" type='submit' class="filtro-data" class="form-control" name="filtro-data" id="filtro-data">
+
+                </form>
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#day-Venda">hoje</button>
+            </div>
+
 
         </div>
 
@@ -23,18 +27,18 @@
             require_once BASE . '/models/DTO/venda.php';
             require_once BASE . '/Connection/Connection.php';
             require_once BASE . '/models/DAO/Daovenda.php';
-            
+
             $data = '';
-           
+
             if (isset($_POST['filtro-data'])) {
                 $data = $_POST['filtro-data'];
             }
-           
+
             if ($data == '') {
-                $data = date("Y-m-d");  
+                $data = date("Y-m-d");
             }
-            
-            
+
+
             $daovenda = new Daovenda();
             $lista = $daovenda->listAll();
             // $lista = $daovenda->getByData($data);
@@ -168,21 +172,21 @@
 
                     <label class="form-label"><strong>Mesa: </strong></label>
                     <label class="form-label" type="text" name="nome" id="nome">
-                       
+
                     </label>
 
                     <label class="form-label"><strong>Total: </strong></label>
                     <label class="form-label" type="text" name="nome" id="nome">
-                        
+
                     </label>
 
                     <label class="form-label"><strong>Hora de Chegada: </strong></label>
                     <label class="form-label" type="text" name="nome" id="nome">
-                        
+
                     </label>
                     <label class="form-label"><strong>Hora de Saida: </strong></label>
                     <label class="form-label" type="text" name="nome" id="nome">
-                        
+
                     </label>
 
 
@@ -190,8 +194,50 @@
 
                 <div class="div">
                     <h5>Produtos Consumidos</h5>
-                   
+
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="day-Venda" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Resumo de Venda Diária</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table diaria">
+                    <tr>
+                        <th>Data</th>
+                        <th>Numero</th>
+                        <th>ReceitaTotal</th>
+                        <th>Média</th>
+                    </tr>
+
+                    <?php
+                    require_once BASE . '/models/DTO/Venda.php';
+                    require_once BASE . '/Connection/Connection.php';
+                    require_once BASE . '/models/DAO/DaoVenda.php';
+
+                    $DaoVenda = new DaoVenda();
+                    $lista = $DaoVenda->listVendasDiarias();
+
+                    foreach ($lista as $registro) {
+                    ?>
+
+
+                        <td><?= $registro['DATE(data)'] ?></td>
+                        <td><?= $registro['NumeroDeVendas'] ?></td>
+                        <td><?= $registro['ReceitaTotal'] ?></td>
+                        <td><?= number_format($registro['MediaDeVendasPorDia'], 2, '.', ',') ?></td>
+
+                    <?php
+                    }
+                    ?>
+                </table>
             </div>
         </div>
     </div>
@@ -206,18 +252,18 @@
     window.addEventListener('load', () => {
         const botoesModalInfo = document.querySelectorAll('button[data-bs-target="#info-Venda"]');
         botoesModalInfo.forEach((el) => {
-            el.addEventListener('click', (ev)=>{
+            el.addEventListener('click', (ev) => {
                 console.log(ev.target.getAttribute('data-id'));
                 let clicado = ev.target;
-                if(clicado.getAttribute('data-id') == null){
+                if (clicado.getAttribute('data-id') == null) {
                     clicado = clicado.parentNode;
                 }
-               
+
                 document.querySelector('#venda').innerText = ev.target.getAttribute('data-id');
 
 
 
-                
+
             });
         });
     });

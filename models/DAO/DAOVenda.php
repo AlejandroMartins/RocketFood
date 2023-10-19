@@ -10,6 +10,14 @@ class DaoVenda
         $lista = $pst->fetchAll(PDO::FETCH_ASSOC);
         return $lista;
     }
+    public function listVendasDiarias()
+    {
+        $lista = [];
+        $pst = Connection::getPreparedStatement('Select * from ViewResumoVendasDeHoje;');
+        $pst->execute();
+        $lista = $pst->fetchAll(PDO::FETCH_ASSOC);
+        return $lista;
+    }
 
     public function getById($id)
     {
@@ -30,6 +38,7 @@ class DaoVenda
         $list = $pst->fetch(PDO::FETCH_ASSOC);
         return $list;
     }
+   
     public function getMesa($id)
     {
         $pst = Connection::getPreparedStatement('select numero from mesa where id = ?;');
@@ -53,6 +62,7 @@ class DaoVenda
         
         
     }
+    
 
 
 

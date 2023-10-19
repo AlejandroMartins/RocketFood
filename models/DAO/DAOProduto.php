@@ -20,7 +20,7 @@ class DaoProduto
             return $lista;
         }else{
             $lista = [];
-            $pst = Connection::getPreparedStatement('select * from produto where id_grupo = ?;');
+            $pst = Connection::getPreparedStatement('call GetProdutosPorGrupo(?);');
             $pst->bindValue(1, $id);
             $pst->execute();
             $lista = $pst->fetchAll(PDO::FETCH_ASSOC);

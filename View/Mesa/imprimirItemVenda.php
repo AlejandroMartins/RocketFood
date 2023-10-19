@@ -31,7 +31,7 @@
     $hora = $_POST['hora'];
     $dataPedido = date('d/m/Y', strtotime($_POST['dataPedido']));
 
-    if ($observacao = null) {
+    if ($observacao == null) {
         $observacao = 'Esse pedido não tem observação';
     }
 

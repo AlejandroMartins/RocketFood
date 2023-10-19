@@ -52,10 +52,9 @@ create table ItemVenda(
  quantidade integer,
  preco decimal(10,2),
  situacao bool,
- dataPedido datetime,
  valorTotal decimal(10,2),
  observacao varchar(50),
- dataItemVenda date,
+ dataPedido date,
  hora time,
  FOREIGN KEY (id_produto) REFERENCES Produto(id) on delete cascade,
   FOREIGN KEY (id_venda) REFERENCES Venda(id) on delete cascade
@@ -123,51 +122,108 @@ INSERT INTO Funcionario (nome, telefone, nivel_acesso, usuario, senha) VALUES ('
 INSERT INTO Funcionario (nome, telefone, nivel_acesso, usuario, senha) VALUES ('Juliana Pereira', '(11) 98765-7654', 'Atendente', 'juliana', 'senha654');
 INSERT INTO Funcionario (nome, telefone, nivel_acesso, usuario, senha) VALUES ('Roberto Costa', '(11) 99876-4321', 'Atendente', 'roberto', 'abc789');
 
-DELIMITER $$
+-- Venda 1
+INSERT INTO Venda (data, horaChegada, horaSaida, aberta, valorTotal, id_mesa, id_funcionario)
+VALUES ('2023-10-18', '10:00:00', '12:00:00', 0, 50.00, 1, 1);
+
+-- Venda 2
+INSERT INTO Venda (data, horaChegada, horaSaida, aberta, valorTotal, id_mesa, id_funcionario)
+VALUES ('2023-10-18', '11:30:00', '14:00:00', 0, 75.00, 2, 2);
+
+-- Venda 3
+INSERT INTO Venda (data, horaChegada, horaSaida, aberta, valorTotal, id_mesa, id_funcionario)
+VALUES ('2023-10-18', '09:00:00', '10:30:00', 0, 35.00, 3, 3);
+
+-- Venda 4
+INSERT INTO Venda (data, horaChegada, horaSaida, aberta, valorTotal, id_mesa, id_funcionario)
+VALUES (now(), '12:30:00', '14:30:00', 0, 60.00, 4, 4);
+
+-- Venda 5
+INSERT INTO Venda (data, horaChegada, horaSaida, aberta, valorTotal, id_mesa, id_funcionario)
+VALUES (now(), '10:30:00', '13:00:00', 0, 45.00, 5, 5);
+
+
+DELIMITER //
 
 CREATE PROCEDURE `inserir_itemvenda`(IN produto_id INT, IN venda_id INT, IN quantidade INT, IN observacao varchar(50))
 BEGIN
     
     IF produto_id IN (SELECT id_produto FROM itemvenda where id_venda = venda_id) THEN
-       
         UPDATE itemvenda iv
         SET iv.quantidade = iv.quantidade + quantidade,
 		iv.valorTotal = iv.valorTotal + quantidade * (SELECT valor FROM produto WHERE id = produto_id)
         WHERE iv.id_produto = produto_id and iv.id_venda = venda_id;
     ELSE
-        
-        INSERT INTO itemvenda (id_produto, id_venda, quantidade, dataPedido, situacao, preco, valorTotal,observacao, dataItemVenda, hora)
-        VALUES (produto_id, venda_id, quantidade, NOW(), true, (SELECT valor FROM produto WHERE id = produto_id), (quantidade * (SELECT valor FROM produto WHERE id = produto_id)),observacao, now(), now());
+        INSERT INTO itemvenda (id_produto, id_venda, quantidade, situacao, preco, valorTotal,observacao, dataPedido, hora)
+        VALUES (produto_id, venda_id, quantidade, true, (SELECT valor FROM produto WHERE id = produto_id), (quantidade * (SELECT valor FROM produto WHERE id = produto_id)),observacao, now(), now());
     END IF;
-END $$
+END //
 
 DELIMITER ;
 
 
-DELIMITER $$
+DELIMITER //
 CREATE TRIGGER `mesabeforevenda` Before INSERT ON `venda` FOR EACH ROW BEGIN
         update mesa set aberta = false
         where id = new.id_mesa;
 END
-$$
+//
 DELIMITER ;
 
-DELIMITER $$
+DELIMITER //
 CREATE TRIGGER `vendabeforeinsert` Before INSERT ON `venda` FOR EACH ROW BEGIN
         
         set new.aberta = true;
 
 END
-$$
+//
 DELIMITER ;
 
-DELIMITER $$
+DELIMITER //
 CREATE TRIGGER `fecharmesa` Before UPDATE ON `venda` FOR EACH ROW BEGIN
         
        update mesa set aberta = true
-        where id = new.id_mesa;
+	   where id = new.id_mesa;
 
 END
-$$
+//
 DELIMITER ;
 
+DELIMITER //
+
+CREATE PROCEDURE GetVendasPorData(IN dataVenda DATE)
+BEGIN
+    SELECT *
+    FROM Venda
+    WHERE data = dataVenda;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE GetProdutosPorGrupo(IN idg int)
+BEGIN
+    SELECT *
+    FROM Produto
+    WHERE id_grupo = idg;
+END //
+
+DELIMITER ;
+
+CREATE VIEW ViewResumoVendasDeHoje AS
+SELECT DATE(data), COUNT(id) AS NumeroDeVendas, SUM(valorTotal) AS
+ReceitaTotal,
+ AVG(valorTotal) AS MediaDeVendasPorDia
+FROM Venda 
+where DATE(data) = DATE(now());
+
+CREATE VIEW ViewVendasPorFuncionario AS
+SELECT f.nome as nome, v.data AS DataVenda, v.valorTotal AS ValorTotal
+FROM Funcionario f
+INNER JOIN Venda v ON f.id = v.id_funcionario;
+
+
+
+
+select * from venda;
+update venda set aberta = 0, horaSaida = now(), valorTotal = 123 where id = 6;

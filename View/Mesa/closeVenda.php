@@ -17,12 +17,14 @@
     require_once BASE . '/Connection/Connection.php';
     require_once BASE . '/models/DAO/DAOVenda.php';
 
+
     $idvenda = $_POST['idvenda'];
     $totalVenda = $_POST['total'];
     $daoVenda = new DaoVenda();
-
-    if ($idDaVenda = $daoVenda->close($idvenda, $totalVenda)) {  
-        header("location: mesa.php");
+    var_dump($idvenda);
+    var_dump($totalVenda);
+    if ($daoVenda->close($idvenda, $totalVenda)) {  
+        // header("location: mesa.php");
         echo 'Deu bom.';
     } else {
         echo 'Deu ruim.';

@@ -30,13 +30,19 @@ ul {
     font-size: 20px;
     margin: 2%;
 }
+.diaria{
+    width: 100%;
 
+}
 .btn-del {
 
     margin: 0;
     padding: 0;
 }
-
+.filtro-btn{
+    display: flex;
+    flex-direction: row;
+}
 .btn-acoes {
     display: flex;
     flex-direction: row;
@@ -47,6 +53,7 @@ ul {
     font-size: 95%;
     border-width: 0.1px;
     border: var(--bs-border-width) solid var(--bs-border-color);
+    margin-right: 30px;
 }
 
 /* Redimensionamento */

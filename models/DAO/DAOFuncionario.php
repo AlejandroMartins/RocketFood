@@ -10,7 +10,14 @@ class DaoFuncionario
         $lista = $pst->fetchAll(PDO::FETCH_ASSOC);
         return $lista;
     }
-
+    public function listVendaByFuncionario()
+    {
+        $lista = [];
+        $pst = Connection::getPreparedStatement('select * from ViewVendasPorFuncionario;');
+        $pst->execute();
+        $lista = $pst->fetchAll(PDO::FETCH_ASSOC);
+        return $lista;
+    }
     public function getById($id)
     {
         $pst = Connection::getPreparedStatement('select * from funcionario where id = ?;');

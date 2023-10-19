@@ -7,7 +7,7 @@ class Connection
     private static $dsn = 'mysql:host=localhost;dbname=rocketfood;port=3306';
     private static $connection = null;
     private static $username = 'root';
-    private static $password = '12345';
+    private static $password = 'root';
 
     // Cria a conexão com o BD e testa
     public static function getConnection() : PDO
