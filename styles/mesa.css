@@ -18,6 +18,17 @@
 
 }
 
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+
+}
+
 .list-table {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -44,8 +55,10 @@ body {
 }
 
 #modal-observacao {
-    z-index: 1090; /* Defina um valor maior que o z-index do primeiro modal */
+    z-index: 1090;
+    /* Defina um valor maior que o z-index do primeiro modal */
 }
+
 /* Estilos para o modal */
 
 

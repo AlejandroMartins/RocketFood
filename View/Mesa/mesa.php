@@ -380,9 +380,6 @@ require_once "../sidebar.php"; ?>
                 var value = parseInt(input.value);
                 input.value = value + 1;
             });
-
-
-
         });
     </script>
 </div>

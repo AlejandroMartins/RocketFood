@@ -8,7 +8,7 @@
 
     <div class="principal">
         <div class="head">
-            <h1>Cardapio</h1>
+            <h1>Cardápio</h1>
 
             <div class="head-filtro">
                 <form action="cardapio.php" method="post" id="formGrupo">

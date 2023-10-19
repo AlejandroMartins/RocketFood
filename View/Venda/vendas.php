@@ -6,7 +6,8 @@
         <div class="Add-Table">
             <h1>Vendas</h1>
             <form action="vendas.php">
-                <input type="date" class="filtro-data" class="form-control" name="filtro-data" id="filtro-data">
+                <input type="date" type= 'submit' class="filtro-data" class="form-control" name="filtro-data" id="filtro-data">
+               
             </form>
 
         </div>
@@ -22,16 +23,21 @@
             require_once BASE . '/models/DTO/venda.php';
             require_once BASE . '/Connection/Connection.php';
             require_once BASE . '/models/DAO/Daovenda.php';
-
-            $data = '2022-05-08';
+            
+            $data = '';
+           
             if (isset($_POST['filtro-data'])) {
                 $data = $_POST['filtro-data'];
             }
-
-            var_dump($data);
+           
+            if ($data == '') {
+                $data = date("Y-m-d");  
+            }
+            
+            
             $daovenda = new Daovenda();
             $lista = $daovenda->listAll();
-            // $list = $daovenda->listForData($data);
+            // $lista = $daovenda->getByData($data);
             ?>
 
 
@@ -184,18 +190,7 @@
 
                 <div class="div">
                     <h5>Produtos Consumidos</h5>
-                    <table>
-                        <tr>
-                            <th>TT</th>
-                            <th>TT</th>
-                            <th>TT</th>
-                        </tr>
-                        <tr>
-                            <td>hjshfd</td>
-                            <td>hjshfd</td>
-                            <td>hjshfd</td>
-                        </tr>
-                    </table>
+                   
                 </div>
             </div>
         </div>

@@ -10,16 +10,6 @@ class DaoVenda
         $lista = $pst->fetchAll(PDO::FETCH_ASSOC);
         return $lista;
     }
-    public function listForData($data)
-    {
-        $lista = [];
-        $pst = Connection::getPreparedStatement('select * from venda where data = ?;');
-        $pst->bindValue(1, $data);
-        $pst->execute();
-        
-        $lista = $pst->fetchAll(PDO::FETCH_ASSOC);
-        return $lista;
-    }
 
     public function getById($id)
     {
@@ -30,6 +20,15 @@ class DaoVenda
         $list = $pst->fetch(PDO::FETCH_ASSOC);
         $obj = new venda($list["dataVenda"], $list["valorTotal"],  $list["id_mesa"], $list["id"]);
         return $obj;
+    }
+    public function getByData($data)
+    {
+        $pst = Connection::getPreparedStatement('call GetVendasPorData(?);');
+        $pst->bindValue(1, $data);
+       
+        $pst->execute();
+        $list = $pst->fetch(PDO::FETCH_ASSOC);
+        return $list;
     }
     public function getMesa($id)
     {
